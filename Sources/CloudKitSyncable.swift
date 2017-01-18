@@ -8,7 +8,7 @@
 import Foundation
 import CloudKit
 
-protocol CloudKitSyncable {
+public protocol CloudKitSyncable {
     init(record: CKRecord) throws
     
     var cloudKitRecordID: CKRecordID? { get }
@@ -19,20 +19,20 @@ protocol CloudKitSyncable {
     var cloudKitReference: CKReference? { get }
 }
 
-extension CloudKitSyncable {
+public extension CloudKitSyncable {
     
-    static var recordType: String { return String(describing: self) }
+    public static var recordType: String { return String(describing: self) }
     
-    var cloudKitReference: CKReference? {
+    public var cloudKitReference: CKReference? {
         guard let recordID = cloudKitRecordID else { return nil }
         return CKReference(recordID: recordID, action: .none)
     }
     
 }
 
-extension CKRecord {
+public extension CKRecord {
     
-    convenience init(object: CloudKitSyncable) {
+    public convenience init(object: CloudKitSyncable) {
         let recordId = object.cloudKitRecordID ?? CKRecordID(recordName: UUID().uuidString)
         self.init(recordType: type(of: object).recordType, recordID: recordId)
         for (key, value) in object.cloudKitRecordProperties() {

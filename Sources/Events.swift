@@ -9,7 +9,7 @@ import Foundation
 import Reactor
 import CloudKit
 
-struct Updated<T>: Reactor.Event {
+public struct Updated<T>: Reactor.Event {
     var payload: T
     
     init(_ payload: T) {
@@ -17,33 +17,38 @@ struct Updated<T>: Reactor.Event {
     }
 }
 
-protocol CloudKitErrorEvent: Reactor.Event {
+public protocol CloudKitErrorEvent: Reactor.Event {
     var error: Error { get }
 }
-protocol CloudKitDataEvent: Reactor.Event { }
+public protocol CloudKitDataEvent: Reactor.Event { }
 
-struct CloudKitRecordError<T: CloudKitSyncable>: CloudKitErrorEvent {
-    var error: Error
-    var record: CKRecord
+public struct CloudKitRecordError<T: CloudKitSyncable>: CloudKitErrorEvent {
+    public var error: Error
+    public var record: CKRecord
     
-    init(_ error: Error, for record: CKRecord) {
+    public init(_ error: Error, for record: CKRecord) {
         self.error = error
         self.record = record
     }
 }
 
-enum OperationType {
+public enum CloudKitOperationType {
     case save
     case fetch
 }
 
-enum OperationStatus {
+public enum CloudKitOperationStatus {
     case started
     case completed
     case errored(Error)
 }
 
-struct CloudKitOperationUpdated<T: CloudKitSyncable>: CloudKitDataEvent {
-    var status: OperationStatus
-    var type: OperationType
+public struct CloudKitOperationUpdated<T: CloudKitSyncable>: CloudKitDataEvent {
+    public var status: CloudKitOperationStatus
+    public var type: CloudKitOperationType
+    
+    public init(status: CloudKitOperationStatus, type: CloudKitOperationType) {
+        self.status = status
+        self.type = type
+    }
 }

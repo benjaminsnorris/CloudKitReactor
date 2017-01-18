@@ -9,17 +9,17 @@ import Foundation
 import Reactor
 import CloudKit
 
-struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
+public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
-    var objects: [T]
-    var privateDatabase: Bool
+    public var objects: [T]
+    public var privateDatabase: Bool
 
-    init(objects: [T], privateDatabase: Bool = true) {
+    public init(objects: [T], privateDatabase: Bool = true) {
         self.objects = objects
         self.privateDatabase = privateDatabase
     }
     
-    func execute(state: U, core: Core<U>) {
+    public func execute(state: U, core: Core<U>) {
         let records = objects.map { CKRecord(object: $0) }
         guard !records.isEmpty else { return }
         let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)

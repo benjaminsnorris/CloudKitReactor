@@ -9,17 +9,17 @@ import Foundation
 import Reactor
 import CloudKit
 
-struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
+public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
-    var predicate: NSPredicate
-    var privateDatabase: Bool
+    public var predicate: NSPredicate
+    public var privateDatabase: Bool
     
-    init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true) {
         self.predicate = predicate
         self.privateDatabase = privateDatabase
     }
     
-    func execute(state: U, core: Core<U>) {
+    public func execute(state: U, core: Core<U>) {
         let query = CKQuery(recordType: T.recordType, predicate: predicate)
         let operation = CKQueryOperation(query: query)
 
