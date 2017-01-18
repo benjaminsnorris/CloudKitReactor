@@ -12,6 +12,8 @@
 		7072FFC01E2FC4E900472CA5 /* CloudKitReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFBE1E2FC4E100472CA5 /* CloudKitReactorTests.swift */; };
 		7072FFC31E2FC50B00472CA5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7072FFC21E2FC50B00472CA5 /* Info.plist */; };
 		7072FFC71E2FC53000472CA5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7072FFC41E2FC52600472CA5 /* Info.plist */; };
+		7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */; };
+		7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		7072FFBE1E2FC4E100472CA5 /* CloudKitReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitReactorTests.swift; sourceTree = "<group>"; };
 		7072FFC21E2FC50B00472CA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7072FFC41E2FC52600472CA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCloudKit.swift; sourceTree = "<group>"; };
+		7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFromCloudKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 		7072FFBA1E2FC4C500472CA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */,
+				7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */,
 				7072FFC11E2FC4FA00472CA5 /* Supporting Files */,
 			);
 			path = Sources;
@@ -167,6 +173,7 @@
 					7072FF9F1E2FC44200472CA5 = {
 						CreatedOnToolsVersion = 8.2;
 						DevelopmentTeam = M9Y5WF87VL;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					7072FFA81E2FC44300472CA5 = {
@@ -218,6 +225,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */,
+				7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +351,7 @@
 		7072FFB51E2FC44300472CA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = M9Y5WF87VL;
@@ -354,6 +364,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.CloudKitReactor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -361,6 +372,7 @@
 		7072FFB61E2FC44300472CA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = M9Y5WF87VL;
@@ -380,6 +392,7 @@
 		7072FFB81E2FC44300472CA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = M9Y5WF87VL;
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -392,6 +405,7 @@
 		7072FFB91E2FC44300472CA5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = M9Y5WF87VL;
 				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
