@@ -1,16 +1,15 @@
-//
-//  FetchFromCloudKit.swift
-//  Carrier
-//
-//  Created by Ben Norris on 1/18/17.
-//  Copyright © 2017 BSN Design. All rights reserved.
-//
+/*
+ |  _   ____   ____   _
+ | | |‾|  ⚈ |-| ⚈  |‾| |
+ | | |  ‾‾‾‾| |‾‾‾‾  | |
+ |  ‾        ‾        ‾
+ */
 
 import Foundation
 import Reactor
 import CloudKit
 
-struct FetchFromCloudKit<T: CloudKitSyncable>: Command {
+struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     var predicate: NSPredicate
     var privateDatabase: Bool
@@ -20,7 +19,7 @@ struct FetchFromCloudKit<T: CloudKitSyncable>: Command {
         self.privateDatabase = privateDatabase
     }
     
-    func execute(state: State, core: Core<State>) {
+    func execute(state: U, core: Core<U>) {
         let query = CKQuery(recordType: T.recordType, predicate: predicate)
         let operation = CKQueryOperation(query: query)
 

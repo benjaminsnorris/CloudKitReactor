@@ -14,6 +14,8 @@
 		7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */; };
 		7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */; };
 		7072FFCE1E2FC64C00472CA5 /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7072FFCD1E2FC64C00472CA5 /* Reactor.framework */; };
+		7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */; };
+		7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD31E2FC7DE00472CA5 /* Events.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCloudKit.swift; sourceTree = "<group>"; };
 		7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFromCloudKit.swift; sourceTree = "<group>"; };
 		7072FFCD1E2FC64C00472CA5 /* Reactor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reactor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
+		7072FFD31E2FC7DE00472CA5 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 		7072FFBA1E2FC4C500472CA5 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				7072FFD31E2FC7DE00472CA5 /* Events.swift */,
+				7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */,
 				7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */,
 				7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */,
 				7072FFC11E2FC4FA00472CA5 /* Supporting Files */,
@@ -235,7 +241,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */,
 				7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */,
+				7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */,
 				7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

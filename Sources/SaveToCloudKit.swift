@@ -1,16 +1,15 @@
-//
-//  SaveToCloudKit.swift
-//  Carrier
-//
-//  Created by Ben Norris on 1/16/17.
-//  Copyright © 2017 BSN Design. All rights reserved.
-//
+/*
+ |  _   ____   ____   _
+ | | |‾|  ⚈ |-| ⚈  |‾| |
+ | | |  ‾‾‾‾| |‾‾‾‾  | |
+ |  ‾        ‾        ‾
+ */
 
 import Foundation
 import Reactor
 import CloudKit
 
-struct SaveToCloudKit<T: CloudKitSyncable>: Command {
+struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     var objects: [T]
     var privateDatabase: Bool
@@ -20,7 +19,7 @@ struct SaveToCloudKit<T: CloudKitSyncable>: Command {
         self.privateDatabase = privateDatabase
     }
     
-    func execute(state: State, core: Core<State>) {
+    func execute(state: U, core: Core<U>) {
         let records = objects.map { CKRecord(object: $0) }
         guard !records.isEmpty else { return }
         let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
@@ -57,35 +56,4 @@ struct SaveToCloudKit<T: CloudKitSyncable>: Command {
         
     }
     
-}
-
-protocol CloudKitErrorEvent: Reactor.Event {
-    var error: Error { get }
-}
-protocol CloudKitDataEvent: Reactor.Event { }
-
-struct CloudKitRecordError<T: CloudKitSyncable>: CloudKitErrorEvent {
-    var error: Error
-    var record: CKRecord
-    
-    init(_ error: Error, for record: CKRecord) {
-        self.error = error
-        self.record = record
-    }
-}
-
-enum OperationType {
-    case save
-    case fetch
-}
-
-enum OperationStatus {
-    case started
-    case completed
-    case errored(Error)
-}
-
-struct CloudKitOperationUpdated<T: CloudKitSyncable>: CloudKitDataEvent {
-    var status: OperationStatus
-    var type: OperationType
 }
