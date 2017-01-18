@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/Reactor"]
+	path = Carthage/Checkouts/Reactor
+	url = https://github.com/jarsen/Reactor.git

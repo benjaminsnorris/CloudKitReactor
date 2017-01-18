@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "3E82C4CF83CC389C8DC6322F0707DADAACF8E83F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "3E82C4CF83CC389C8DC6322F0707DADAACF8E83F" : 9223372036854775807,
+    "43EFC9281DF8915995BF6A23DCD63626838A6A2E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EDC1F0B0-C24E-49B2-9BF3-9781DD596259",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "3E82C4CF83CC389C8DC6322F0707DADAACF8E83F" : "CloudKitReactor\/",
+    "43EFC9281DF8915995BF6A23DCD63626838A6A2E" : "CloudKitReactor\/Carthage\/Checkouts\/Reactor\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CloudKitReactor",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CloudKitReactor.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/benjaminsnorris\/CloudKitReactor.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3E82C4CF83CC389C8DC6322F0707DADAACF8E83F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jarsen\/Reactor.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43EFC9281DF8915995BF6A23DCD63626838A6A2E"
+    }
+  ]
+}
