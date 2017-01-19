@@ -33,7 +33,7 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
                 do {
                     var object = try T(record: record)
                     object.modifiedDate = Date()
-                    core.fire(event: Updated(object))
+                    core.fire(event: CloudKitUpdated(object))
                 } catch {
                     core.fire(event: CloudKitRecordError<T>(error, for: record))
                 }

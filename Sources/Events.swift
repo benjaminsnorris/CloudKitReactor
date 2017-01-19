@@ -9,7 +9,7 @@ import Foundation
 import Reactor
 import CloudKit
 
-public struct Updated<T>: Reactor.Event {
+public struct CloudKitUpdated<T>: Reactor.Event {
     public var payload: T
     
     public init(_ payload: T) {

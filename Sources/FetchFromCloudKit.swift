@@ -28,7 +28,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
             do {
                 var object = try T(record: fetchedRecord)
                 object.modifiedDate = Date()
-                core.fire(event: Updated(object))
+                core.fire(event: CloudKitUpdated(object))
                 fetchedObjects.append(object)
             } catch {
                 core.fire(event: CloudKitRecordError<T>(error, for: fetchedRecord))
