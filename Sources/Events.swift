@@ -35,6 +35,7 @@ public struct CloudKitRecordError<T: CloudKitSyncable>: CloudKitErrorEvent {
 public enum CloudKitOperationType {
     case save
     case fetch
+    case delete
 }
 
 public enum CloudKitOperationStatus {
