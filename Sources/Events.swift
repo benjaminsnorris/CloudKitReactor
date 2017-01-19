@@ -40,7 +40,7 @@ public enum CloudKitOperationType {
 
 public enum CloudKitOperationStatus {
     case started
-    case completed
+    case completed([CloudKitSyncable])
     case errored(Error)
 }
 

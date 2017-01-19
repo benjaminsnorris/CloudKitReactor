@@ -44,7 +44,7 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
             if let error = error {
                 core.fire(event: CloudKitOperationUpdated<T>(status: .errored(error), type: .save))
             } else {
-                core.fire(event: CloudKitOperationUpdated<T>(status: .completed, type: .save))
+                core.fire(event: CloudKitOperationUpdated<T>(status: .completed(self.objects), type: .save))
             }
         }
         

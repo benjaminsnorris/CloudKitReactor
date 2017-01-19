@@ -29,7 +29,7 @@ public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 core.fire(event: CloudKitOperationUpdated<T>(status: .errored(error), type: .delete))
             } else {
                 core.fire(command: FetchFromCloudKit<T, U>(privateDatabase: self.privateDatabase))
-                core.fire(event: CloudKitOperationUpdated<T>(status: .completed, type: .delete))
+                core.fire(event: CloudKitOperationUpdated<T>(status: .completed(self.objects), type: .delete))
             }
         }
         

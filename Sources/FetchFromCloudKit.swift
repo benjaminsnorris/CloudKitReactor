@@ -22,12 +22,14 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     public func execute(state: U, core: Core<U>) {
         let query = CKQuery(recordType: T.recordType, predicate: predicate)
         let operation = CKQueryOperation(query: query)
+        var fetchedObjects = [T]()
 
         let perRecordBlock = { (fetchedRecord: CKRecord) -> Void in
             do {
                 var object = try T(record: fetchedRecord)
                 object.modifiedDate = Date()
                 core.fire(event: Updated(object))
+                fetchedObjects.append(object)
             } catch {
                 core.fire(event: CloudKitRecordError<T>(error, for: fetchedRecord))
             }
@@ -51,7 +53,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
             } else if let error = error {
                 core.fire(event: CloudKitOperationUpdated<T>(status: .errored(error), type: .fetch))
             } else {
-                core.fire(event: CloudKitOperationUpdated<T>(status: .completed, type: .fetch))
+                core.fire(event: CloudKitOperationUpdated<T>(status: .completed(fetchedObjects), type: .fetch))
             }
         }
         operation.queryCompletionBlock = queryCompletionBlock
