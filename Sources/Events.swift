@@ -10,9 +10,9 @@ import Reactor
 import CloudKit
 
 public struct Updated<T>: Reactor.Event {
-    var payload: T
+    public var payload: T
     
-    init(_ payload: T) {
+    public init(_ payload: T) {
         self.payload = payload
     }
 }
