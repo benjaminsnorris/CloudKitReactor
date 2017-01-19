@@ -35,10 +35,20 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
         if privateDatabase {
             CKContainer.default().privateCloudDatabase.save(subscription) { subscription, error in
                 // TODO: Handle failure
+                if let error = error {
+                    print("status=subscription-failed error=\(error)")
+                } else {
+                    print("status=subscription-successful")
+                }
             }
         } else {
             CKContainer.default().publicCloudDatabase.save(subscription) { subscription, error in
                 // TODO: Handle failure
+                if let error = error {
+                    print("status=subscription-failed error=\(error)")
+                } else {
+                    print("status=subscription-successful")
+                }
             }
         }
     }
