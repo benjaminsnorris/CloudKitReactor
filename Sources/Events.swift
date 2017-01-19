@@ -38,17 +38,17 @@ public enum CloudKitOperationType {
     case delete
 }
 
-public enum CloudKitOperationStatus {
+public enum CloudKitOperationStatus<T: CloudKitSyncable> {
     case started
-    case completed([CloudKitSyncable])
+    case completed([T])
     case errored(Error)
 }
 
 public struct CloudKitOperationUpdated<T: CloudKitSyncable>: CloudKitDataEvent {
-    public var status: CloudKitOperationStatus
+    public var status: CloudKitOperationStatus<T>
     public var type: CloudKitOperationType
     
-    public init(status: CloudKitOperationStatus, type: CloudKitOperationType) {
+    public init(status: CloudKitOperationStatus<T>, type: CloudKitOperationType) {
         self.status = status
         self.type = type
     }
