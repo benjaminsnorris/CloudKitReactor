@@ -14,7 +14,7 @@ public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     public var objects: [T]
     public var privateDatabase: Bool
     
-    public init(objects: [T], privateDatabase: Bool = true) {
+    public init(_ objects: [T], privateDatabase: Bool = true) {
         self.objects = objects
         self.privateDatabase = privateDatabase
     }
