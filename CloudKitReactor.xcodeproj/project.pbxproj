@@ -17,6 +17,7 @@
 		7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */; };
 		7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD31E2FC7DE00472CA5 /* Events.swift */; };
 		7072FFDA1E31174B00472CA5 /* DeleteFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD91E31174B00472CA5 /* DeleteFromCloudKit.swift */; };
+		7072FFE11E3137ED00472CA5 /* SubscribeToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFE01E3137ED00472CA5 /* SubscribeToCloudKit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 		7072FFD31E2FC7DE00472CA5 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		7072FFD91E31174B00472CA5 /* DeleteFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteFromCloudKit.swift; sourceTree = "<group>"; };
+		7072FFE01E3137ED00472CA5 /* SubscribeToCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeToCloudKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */,
 				7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */,
 				7072FFD91E31174B00472CA5 /* DeleteFromCloudKit.swift */,
+				7072FFE01E3137ED00472CA5 /* SubscribeToCloudKit.swift */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7072FFE11E3137ED00472CA5 /* SubscribeToCloudKit.swift in Sources */,
 				7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */,
 				7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */,
 				7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */,
