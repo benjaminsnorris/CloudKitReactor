@@ -12,10 +12,12 @@ import CloudKit
 public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var objects: [T]
+    public var savePolicy: CKRecordSavePolicy
     public var privateDatabase: Bool
 
-    public init(_ objects: [T], privateDatabase: Bool = true) {
+    public init(_ objects: [T], savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true) {
         self.objects = objects
+        self.savePolicy = savePolicy
         self.privateDatabase = privateDatabase
     }
     
@@ -23,7 +25,7 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
         let records = objects.map { CKRecord(object: $0) }
         guard !records.isEmpty else { return }
         let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
-        operation.savePolicy = .changedKeys
+        operation.savePolicy = savePolicy
         operation.queuePriority = .high
         operation.qualityOfService = .userInteractive
         operation.perRecordCompletionBlock = { record, error in
