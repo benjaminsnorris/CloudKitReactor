@@ -12,11 +12,11 @@ import Reactor
 public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var predicate: NSPredicate
-    public var options: CKSubscriptionOptions
+    public var options: CKQuerySubscriptionOptions
     public var notificationInfo: CKNotificationInfo
     public var privateDatabase: Bool
 
-    public init(predicate: NSPredicate = NSPredicate(value: true), options: CKSubscriptionOptions = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion], notificationInfo: CKNotificationInfo? = nil, privateDatabase: Bool = true) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), options: CKQuerySubscriptionOptions = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion], notificationInfo: CKNotificationInfo? = nil, privateDatabase: Bool = true) {
         self.predicate = predicate
         self.options = options
         if let notificationInfo = notificationInfo {
@@ -29,7 +29,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
-        let subscription = CKSubscription(recordType: T.recordType, predicate: predicate, options: options)
+        let subscription = CKQuerySubscription(recordType: T.recordType, predicate: predicate, options: options)
         subscription.notificationInfo = notificationInfo
         
         if privateDatabase {
