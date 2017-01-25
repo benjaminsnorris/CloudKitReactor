@@ -53,3 +53,8 @@ public struct CloudKitOperationUpdated<T: CloudKitSyncable>: CloudKitDataEvent {
         self.type = type
     }
 }
+
+public struct CloudKitStatusRetrieved: CloudKitDataEvent {
+    public var status: CKAccountStatus
+    public var error: Error?
+}

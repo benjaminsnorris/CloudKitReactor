@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70039E2C1E3904E4005041F1 /* CheckCloudKitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */; };
 		7072FFAA1E2FC44300472CA5 /* CloudKitReactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7072FFA01E2FC44200472CA5 /* CloudKitReactor.framework */; };
 		7072FFBC1E2FC4C500472CA5 /* CloudKitReactor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7072FFBB1E2FC4C500472CA5 /* CloudKitReactor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7072FFC01E2FC4E900472CA5 /* CloudKitReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFBE1E2FC4E100472CA5 /* CloudKitReactorTests.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckCloudKitStatus.swift; sourceTree = "<group>"; };
 		7072FFA01E2FC44200472CA5 /* CloudKitReactor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CloudKitReactor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7072FFA91E2FC44300472CA5 /* CloudKitReactorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudKitReactorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7072FFBB1E2FC4C500472CA5 /* CloudKitReactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudKitReactor.h; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		7072FFDB1E311E8900472CA5 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
+				70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */,
 				7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */,
 				7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */,
 				7072FFD91E31174B00472CA5 /* DeleteFromCloudKit.swift */,
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70039E2C1E3904E4005041F1 /* CheckCloudKitStatus.swift in Sources */,
 				7072FFE11E3137ED00472CA5 /* SubscribeToCloudKit.swift in Sources */,
 				7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */,
 				7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */,
