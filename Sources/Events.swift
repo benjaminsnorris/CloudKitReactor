@@ -58,3 +58,9 @@ public struct CloudKitStatusRetrieved: CloudKitDataEvent {
     public var status: CKAccountStatus
     public var error: Error?
 }
+
+public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent { }
+
+public struct CloudKitSubscriptionError: CloudKitErrorEvent {
+    public var error: Error
+}
