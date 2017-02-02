@@ -72,3 +72,11 @@ public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent { }
 public struct CloudKitSubscriptionError: CloudKitErrorEvent {
     public var error: Error
 }
+
+public struct CloudKitBadgeError: CloudKitErrorEvent {
+    public var error: Error
+}
+
+public struct CloudKitBadgeUpdated: CloudKitDataEvent {
+    public var badgeCount: Int
+}
