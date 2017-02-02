@@ -32,6 +32,14 @@ public struct CloudKitRecordError<T: CloudKitSyncable>: CloudKitErrorEvent {
     }
 }
 
+public enum CloudKitFetchError: Error {
+    case unknown
+}
+
+public struct CloudKitRecordFetchError: CloudKitErrorEvent {
+    public var error: Error
+}
+
 public enum CloudKitOperationType {
     case save
     case fetch
