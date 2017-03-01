@@ -16,7 +16,7 @@ public protocol CloudKitSyncable {
     func cloudKitRecordProperties() -> [String: CKRecordValue?]
     
     static var recordType: String { get }
-    var cloudKitReference: CKReference? { get }
+    var cloudKitReference: CKReference { get }
 }
 
 public extension CloudKitSyncable {
