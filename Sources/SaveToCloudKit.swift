@@ -21,6 +21,10 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
         self.privateDatabase = privateDatabase
     }
     
+    public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true) {
+        self.init([object], savePolicy: savePolicy, privateDatabase: privateDatabase)
+    }
+    
     public func execute(state: U, core: Core<U>) {
         let records = objects.map { CKRecord(object: $0) }
         guard !records.isEmpty else { return }
