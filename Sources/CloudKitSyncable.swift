@@ -11,7 +11,7 @@ import CloudKit
 public protocol CloudKitSyncable {
     init(record: CKRecord) throws
     
-    var cloudKitRecordID: CKRecordID? { get }
+    var cloudKitRecordID: CKRecordID { get }
     var modifiedDate: Date { get set }
     func cloudKitRecordProperties() -> [String: CKRecordValue?]
     
@@ -23,9 +23,8 @@ public extension CloudKitSyncable {
     
     public static var recordType: String { return String(describing: self) }
     
-    public var cloudKitReference: CKReference? {
-        guard let recordID = cloudKitRecordID else { return nil }
-        return CKReference(recordID: recordID, action: .none)
+    public var cloudKitReference: CKReference {
+        return CKReference(recordID: cloudKitRecordID, action: .none)
     }
     
 }
@@ -33,7 +32,7 @@ public extension CloudKitSyncable {
 public extension CKRecord {
     
     public convenience init(object: CloudKitSyncable) {
-        let recordId = object.cloudKitRecordID ?? CKRecordID(recordName: UUID().uuidString)
+        let recordId = object.cloudKitRecordID
         self.init(recordType: type(of: object).recordType, recordID: recordId)
         for (key, value) in object.cloudKitRecordProperties() {
             self[key] = value

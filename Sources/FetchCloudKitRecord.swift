@@ -22,13 +22,12 @@ public struct FetchCloudKitRecord<T: CloudKitSyncable, U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
-        guard let recordId = record.cloudKitRecordID else { return }
         if self.privateDatabase {
-            CKContainer.default().privateCloudDatabase.fetch(withRecordID: recordId) { record, error in
+            CKContainer.default().privateCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
                 self.process(record, error: error, state: state, core: core)
             }
         } else {
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordId) { record, error in
+            CKContainer.default().publicCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
                 self.process(record, error: error, state: state, core: core)
             }
         }
