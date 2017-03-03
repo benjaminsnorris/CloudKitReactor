@@ -13,10 +13,12 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var predicate: NSPredicate
     public var privateDatabase: Bool
+    public var completion: ((Bool) -> Void)?
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true, completion: ((Bool) -> Void)? = nil) {
         self.predicate = predicate
         self.privateDatabase = privateDatabase
+        self.completion = completion
     }
     
     public func execute(state: U, core: Core<U>) {
@@ -54,6 +56,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 core.fire(event: CloudKitOperationUpdated<T>(status: .errored(error), type: .fetch))
             } else {
                 core.fire(event: CloudKitOperationUpdated<T>(status: .completed(fetchedObjects), type: .fetch))
+                self.completion?(!fetchedObjects.isEmpty)
             }
         }
         operation.queryCompletionBlock = queryCompletionBlock
