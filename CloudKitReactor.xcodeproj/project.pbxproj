@@ -22,6 +22,7 @@
 		708AA8561E4374950009C64D /* FetchCloudKitRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AA8551E4374950009C64D /* FetchCloudKitRecord.swift */; };
 		708AA8581E4384C30009C64D /* UpdateCloudKitBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */; };
 		70A797B01ED45A380082A267 /* FetchCurrentUserID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */; };
+		70A797B21ED45C810082A267 /* DiscoverCurrentUserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		708AA8551E4374950009C64D /* FetchCloudKitRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCloudKitRecord.swift; sourceTree = "<group>"; };
 		708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCloudKitBadge.swift; sourceTree = "<group>"; };
 		70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCurrentUserID.swift; sourceTree = "<group>"; };
+		70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCurrentUserIdentity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				7072FFE01E3137ED00472CA5 /* SubscribeToCloudKit.swift */,
 				708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */,
 				70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */,
+				70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70039E2C1E3904E4005041F1 /* CheckCloudKitStatus.swift in Sources */,
+				70A797B21ED45C810082A267 /* DiscoverCurrentUserIdentity.swift in Sources */,
 				7072FFE11E3137ED00472CA5 /* SubscribeToCloudKit.swift in Sources */,
 				70A797B01ED45A380082A267 /* FetchCurrentUserID.swift in Sources */,
 				7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */,

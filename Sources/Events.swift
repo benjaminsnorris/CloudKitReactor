@@ -71,6 +71,10 @@ public struct CloudKitCurrentUserIDRetrieved: CloudKitDataEvent {
     public var recordID: CKRecordID
 }
 
+public struct CloudKitCurrentUserIdentityRetrieved: CloudKitDataEvent {
+    public var identity: CKUserIdentity
+}
+
 public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent { }
 
 public struct CloudKitSubscriptionError: CloudKitErrorEvent {
