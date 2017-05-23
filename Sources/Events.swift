@@ -67,6 +67,10 @@ public struct CloudKitStatusRetrieved: CloudKitDataEvent {
     public var error: Error?
 }
 
+public struct CloudKitCurrentUserIDRetrieved: CloudKitDataEvent {
+    public var recordID: CKRecordID
+}
+
 public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent { }
 
 public struct CloudKitSubscriptionError: CloudKitErrorEvent {
