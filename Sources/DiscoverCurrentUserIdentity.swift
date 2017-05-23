@@ -16,15 +16,18 @@ public struct DiscoverCurrentUserIdentity<U: State>: Command {
     public func execute(state: U, core: Core<U>) {
         core.fire(command: FetchCurrentUserID { recordID in
             guard let recordID = recordID else { return }
-            CKContainer.default().discoverUserIdentity(withUserRecordID: recordID) { identity, error in
+            let lookupInfo = CKUserIdentityLookupInfo(userRecordID: recordID)
+            let operation = CKDiscoverUserIdentitiesOperation(userIdentityLookupInfos: [lookupInfo])
+            operation.userIdentityDiscoveredBlock = { identity, lookupInfo in
+                core.fire(event: CloudKitCurrentUserIdentityRetrieved(identity: identity))
+            }
+            operation.discoverUserIdentitiesCompletionBlock = { error in
                 if let error = error {
                     core.fire(event: CloudKitRecordFetchError(error: error))
-                } else if let identity = identity {
-                    core.fire(event: CloudKitCurrentUserIdentityRetrieved(identity: identity))
-                } else {
-                    core.fire(event: CloudKitRecordFetchError(error: CloudKitFetchError.unknown))
                 }
             }
+            operation.queuePriority = .veryHigh
+            CKContainer.default().add(operation)
         })
     }
     
