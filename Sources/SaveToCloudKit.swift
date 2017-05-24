@@ -14,15 +14,17 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     public var objects: [T]
     public var savePolicy: CKRecordSavePolicy
     public var privateDatabase: Bool
+    public var completion: (() -> Void)?
 
-    public init(_ objects: [T], savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true) {
+    public init(_ objects: [T], savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true, completion: (() -> Void)? = nil) {
         self.objects = objects
         self.savePolicy = savePolicy
         self.privateDatabase = privateDatabase
+        self.completion = completion
     }
     
-    public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true) {
-        self.init([object], savePolicy: savePolicy, privateDatabase: privateDatabase)
+    public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true, completion: (() -> Void)? = nil) {
+        self.init([object], savePolicy: savePolicy, privateDatabase: privateDatabase, completion: completion)
     }
     
     public func execute(state: U, core: Core<U>) {
@@ -52,6 +54,7 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
             } else {
                 core.fire(event: CloudKitOperationUpdated<T>(status: .completed(self.objects), type: .save))
             }
+            self.completion?()
         }
         
         if privateDatabase {
