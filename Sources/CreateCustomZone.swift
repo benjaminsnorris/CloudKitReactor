@@ -12,14 +12,20 @@ import Reactor
 
 public struct CreateCustomZone<U: State>: Command {
     
-    public var zoneName: String
+    public var zoneName: String?
     
-    public init(named zoneName: String) {
+    public init(named zoneName: String? = nil) {
         self.zoneName = zoneName
     }
     
     public func execute(state: U, core: Core<U>) {
-        let zone = CKRecordZone(zoneID: CloudKitReactorConstants.zoneID)
+        let zoneID: CKRecordZoneID
+        if let zoneName = zoneName {
+            zoneID = CKRecordZoneID(zoneName: zoneName, ownerName: CKCurrentUserDefaultName)
+        } else {
+            zoneID = CloudKitReactorConstants.zoneID
+        }
+        let zone = CKRecordZone(zoneID: zoneID)
         let operation = CKModifyRecordZonesOperation(recordZonesToSave: [zone], recordZoneIDsToDelete: nil)
         operation.modifyRecordZonesCompletionBlock = { saved, _, error in
             if let error = error {
