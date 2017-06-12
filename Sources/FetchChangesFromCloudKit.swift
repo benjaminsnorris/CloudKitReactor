@@ -19,10 +19,10 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
     public var completion: ((_ changes: Bool) -> Void)?
     
     fileprivate var defaultZoneOnly: Bool {
-        return recordZoneIDs == [CKRecordZone.default().zoneID] && recordZoneChangesOptions.isEmpty
+        return recordZoneIDs == [CloudKitReactorConstants.zoneID] && recordZoneChangesOptions.isEmpty
     }
     
-    public init(with objectTypes: [CloudKitSyncable.Type], recordZoneIDs: [CKRecordZoneID] = [CKRecordZone.default().zoneID], recordZoneChangesOptions: [CKFetchRecordZoneChangesOptions] = [], defaultZoneChangeToken: CKServerChangeToken? = nil, privateDatabase: Bool = true, completion: ((_ changes: Bool) -> Void)? = nil) {
+    public init(with objectTypes: [CloudKitSyncable.Type], recordZoneIDs: [CKRecordZoneID] = [CloudKitReactorConstants.zoneID], recordZoneChangesOptions: [CKFetchRecordZoneChangesOptions] = [], defaultZoneChangeToken: CKServerChangeToken? = nil, privateDatabase: Bool = true, completion: ((_ changes: Bool) -> Void)? = nil) {
         self.objectTypes = objectTypes
         self.recordZoneIDs = recordZoneIDs
         self.recordZoneChangesOptions = recordZoneChangesOptions

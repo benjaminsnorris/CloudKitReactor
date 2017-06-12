@@ -13,17 +13,20 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var predicate: NSPredicate
     public var privateDatabase: Bool
+    public var zoneID: CKRecordZoneID
     public var completion: ((Bool) -> Void)?
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true, completion: ((Bool) -> Void)? = nil) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, completion: ((Bool) -> Void)? = nil) {
         self.predicate = predicate
         self.privateDatabase = privateDatabase
+        self.zoneID = zoneID
         self.completion = completion
     }
     
     public func execute(state: U, core: Core<U>) {
         let query = CKQuery(recordType: T.recordType, predicate: predicate)
         let operation = CKQueryOperation(query: query)
+        operation.zoneID = zoneID
         var fetchedObjects = [T]()
 
         let perRecordBlock = { (fetchedRecord: CKRecord) -> Void in
