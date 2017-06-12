@@ -22,7 +22,7 @@ public struct CloudKitUpdated<T>: CloudKitDataEvent {
     }
 }
 
-public struct CloudKitDeleted<T>: CloudKitDataEvent {
+public struct CloudKitDeleted: CloudKitDataEvent {
     public var recordID: CKRecordID
 }
 

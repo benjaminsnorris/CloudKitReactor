@@ -55,6 +55,7 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
         
         operation.recordWithIDWasDeletedBlock = { recordID, _ in
             changes = true
+            core.fire(event: CloudKitDeleted(recordID: recordID))
         }
         
         operation.recordChangedBlock = { record in
