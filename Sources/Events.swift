@@ -9,7 +9,12 @@ import Foundation
 import Reactor
 import CloudKit
 
-public struct CloudKitUpdated<T>: Reactor.Event {
+public protocol CloudKitErrorEvent: Reactor.Event {
+    var error: Error { get }
+}
+public protocol CloudKitDataEvent: Reactor.Event { }
+
+public struct CloudKitUpdated<T>: CloudKitDataEvent {
     public var payload: T
     
     public init(_ payload: T) {
@@ -17,12 +22,11 @@ public struct CloudKitUpdated<T>: Reactor.Event {
     }
 }
 
-public protocol CloudKitErrorEvent: Reactor.Event {
-    var error: Error { get }
+public struct CloudKitDeleted<T>: CloudKitDataEvent {
+    public var recordID: CKRecordID
 }
-public protocol CloudKitDataEvent: Reactor.Event { }
 
-public struct CloudKitRecordError<T: CloudKitSyncable>: CloudKitErrorEvent {
+public struct CloudKitRecordError: CloudKitErrorEvent {
     public var error: Error
     public var record: CKRecord
     
@@ -46,17 +50,17 @@ public enum CloudKitOperationType {
     case delete
 }
 
-public enum CloudKitOperationStatus<T: CloudKitSyncable> {
+public enum CloudKitOperationStatus {
     case started
-    case completed([T])
+    case completed
     case errored(Error)
 }
 
-public struct CloudKitOperationUpdated<T: CloudKitSyncable>: CloudKitDataEvent {
-    public var status: CloudKitOperationStatus<T>
+public struct CloudKitOperationUpdated: CloudKitDataEvent {
+    public var status: CloudKitOperationStatus
     public var type: CloudKitOperationType
     
-    public init(status: CloudKitOperationStatus<T>, type: CloudKitOperationType) {
+    public init(status: CloudKitOperationStatus, type: CloudKitOperationType) {
         self.status = status
         self.type = type
     }
@@ -92,4 +96,9 @@ public struct CloudKitBadgeError: CloudKitErrorEvent {
 
 public struct CloudKitBadgeUpdated: CloudKitDataEvent {
     public var badgeCount: Int
+}
+
+public struct CloudKitServerChangeTokenUpdated: CloudKitDataEvent {
+    public var zoneID: CKRecordZoneID
+    public var token: CKServerChangeToken?
 }

@@ -33,7 +33,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 core.fire(event: CloudKitUpdated(object))
                 fetchedObjects.append(object)
             } catch {
-                core.fire(event: CloudKitRecordError<T>(error, for: fetchedRecord))
+                core.fire(event: CloudKitRecordError(error, for: fetchedRecord))
             }
         }
         operation.recordFetchedBlock = perRecordBlock
@@ -53,11 +53,11 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 }
                 
             } else if let error = error {
-                core.fire(event: CloudKitOperationUpdated<T>(status: .errored(error), type: .fetch))
+                core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .fetch))
             } else {
-                core.fire(event: CloudKitOperationUpdated<T>(status: .completed(fetchedObjects), type: .fetch))
-                self.completion?(!fetchedObjects.isEmpty)
+                core.fire(event: CloudKitOperationUpdated(status: .completed, type: .fetch))
             }
+            self.completion?(!fetchedObjects.isEmpty)
         }
         operation.queryCompletionBlock = queryCompletionBlock
         

@@ -26,9 +26,9 @@ public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
         operation.savePolicy = .ifServerRecordUnchanged
         operation.modifyRecordsCompletionBlock = { _, _, error in
             if let error = error {
-                core.fire(event: CloudKitOperationUpdated<T>(status: .errored(error), type: .delete))
+                core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .delete))
             } else {
-                core.fire(event: CloudKitOperationUpdated<T>(status: .completed(self.objects), type: .delete))
+                core.fire(event: CloudKitOperationUpdated(status: .completed, type: .delete))
             }
         }
         

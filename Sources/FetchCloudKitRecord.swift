@@ -43,7 +43,7 @@ public struct FetchCloudKitRecord<T: CloudKitSyncable, U: State>: Command {
                 object.modifiedDate = Date()
                 core.fire(event: CloudKitUpdated(object))
             } catch {
-                core.fire(event: CloudKitRecordError<T>(error, for: record))
+                core.fire(event: CloudKitRecordError(error, for: record))
             }
         } else {
             core.fire(event: CloudKitRecordFetchError(error: CloudKitFetchError.unknown))
