@@ -9,7 +9,6 @@ import Foundation
 import CloudKit
 import Reactor
 
-let defaultCustomZoneName = "DefaultCustomZone"
 
 public struct CreateCustomZone<U: State>: Command {
     
@@ -20,15 +19,14 @@ public struct CreateCustomZone<U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
-        let zoneID = CKRecordZoneID(zoneName: defaultCustomZoneName, ownerName: CKCurrentUserDefaultName)
-        let zone = CKRecordZone(zoneID: zoneID)
+        let zone = CKRecordZone(zoneID: CloudKitReactorConstants.zoneID)
         let operation = CKModifyRecordZonesOperation(recordZonesToSave: [zone], recordZoneIDsToDelete: nil)
         operation.modifyRecordZonesCompletionBlock = { saved, _, error in
             if let error = error {
                 core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .save))
             } else {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .save))
-                core.fire(event: CloudKitDefaultCustomZoneCreated(zoneID: zoneID))
+                core.fire(event: CloudKitDefaultCustomZoneCreated(zoneID: CloudKitReactorConstants.zoneID))
             }
         }
         operation.qualityOfService = .userInitiated
