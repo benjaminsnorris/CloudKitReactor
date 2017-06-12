@@ -71,6 +71,10 @@ public struct CloudKitStatusRetrieved: CloudKitDataEvent {
     public var error: Error?
 }
 
+public struct CloudKitDefaultCustomZoneCreated: CloudKitDataEvent {
+    public var zoneID: CKRecordZoneID
+}
+
 public struct CloudKitUserDiscoverabilityRetrieved: CloudKitDataEvent {
     public var status: CKApplicationPermissionStatus
     public var error: Error?

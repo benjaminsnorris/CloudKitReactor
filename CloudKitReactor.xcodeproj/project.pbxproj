@@ -23,6 +23,7 @@
 		708AA8581E4384C30009C64D /* UpdateCloudKitBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */; };
 		70A797B01ED45A380082A267 /* FetchCurrentUserID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */; };
 		70A797B21ED45C810082A267 /* DiscoverCurrentUserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */; };
+		E7A1ED231EEF32D300C50D6B /* CreateCustomZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1ED221EEF32D300C50D6B /* CreateCustomZone.swift */; };
 		E7BA1AC81EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BA1AC71EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCloudKitBadge.swift; sourceTree = "<group>"; };
 		70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCurrentUserID.swift; sourceTree = "<group>"; };
 		70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCurrentUserIdentity.swift; sourceTree = "<group>"; };
+		E7A1ED221EEF32D300C50D6B /* CreateCustomZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCustomZone.swift; sourceTree = "<group>"; };
 		E7BA1AC71EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchChangesFromCloudKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */,
+				E7A1ED221EEF32D300C50D6B /* CreateCustomZone.swift */,
 				7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */,
 				7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */,
 				E7BA1AC71EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift */,
@@ -285,6 +288,7 @@
 				7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */,
 				7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */,
 				7072FFDA1E31174B00472CA5 /* DeleteFromCloudKit.swift in Sources */,
+				E7A1ED231EEF32D300C50D6B /* CreateCustomZone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
