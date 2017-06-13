@@ -24,6 +24,7 @@ public struct FetchRecordZone<U: State>: Command {
         operation.fetchRecordZonesCompletionBlock = { zonesDictionary, error in
             if let error = error {
                 core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .fetch))
+                self.completion?(false)
             } else {
                 let found = zonesDictionary?[self.zoneID] != nil
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .fetch))
