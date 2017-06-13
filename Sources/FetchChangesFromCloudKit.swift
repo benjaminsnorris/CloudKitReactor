@@ -80,6 +80,8 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
             self.completion?(changes)
         }
         
+        operation.qualityOfService = .userInitiated
+        
         if privateDatabase {
             CKContainer.default().privateCloudDatabase.add(operation)
         } else {

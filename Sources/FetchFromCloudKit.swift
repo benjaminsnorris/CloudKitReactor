@@ -64,6 +64,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
         }
         operation.queryCompletionBlock = queryCompletionBlock
         
+        operation.qualityOfService = .userInitiated
         if privateDatabase {
             CKContainer.default().privateCloudDatabase.add(operation)
         } else {

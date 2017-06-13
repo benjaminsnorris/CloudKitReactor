@@ -26,6 +26,7 @@ public struct UpdateCloudKitBadge<U: State>: Command {
                 core.fire(event: CloudKitBadgeUpdated(badgeCount: self.badgeCount))
             }
         }
+        operation.qualityOfService = .userInitiated
         CKContainer.default().add(operation)
     }
     

@@ -56,7 +56,8 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
             }
             self.completion?()
         }
-        
+
+        operation.qualityOfService = .userInitiated
         if privateDatabase {
             CKContainer.default().privateCloudDatabase.add(operation)
         } else {

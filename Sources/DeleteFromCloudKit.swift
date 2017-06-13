@@ -31,7 +31,7 @@ public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .delete))
             }
         }
-        
+        operation.qualityOfService = .userInitiated
         if privateDatabase {
             CKContainer.default().privateCloudDatabase.add(operation)
         } else {
