@@ -30,6 +30,8 @@ public struct FetchRecordZone<U: State>: Command {
                 self.completion?(found)
             }
         }
+        operation.qualityOfService = .userInitiated
+        CKContainer.default().privateCloudDatabase.add(operation)
     }
     
 }
