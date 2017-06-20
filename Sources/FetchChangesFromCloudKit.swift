@@ -41,6 +41,7 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
             core.fire(event: CloudKitDatabaseServerChangeTokenUpdated(databaseScope: self.databaseScope, token: token))
             if let error = error {
                 core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .fetch))
+                self.completion?(false)
             } else {
                 core.fire(command: FetchRecordZoneChanges(with: self.objectTypes, recordZoneIDs: changedZoneIDs, zoneChangeTokens: self.zoneChangeTokens, databaseScope: self.databaseScope, completion: self.completion))
             }
