@@ -49,7 +49,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {
-                    core.fire(event: CloudKitSubscriptionSuccessful(type: .privateQuery))
+                    core.fire(event: CloudKitSubscriptionSuccessful(type: .privateQuery, subscriptionID: self.subscriptionID))
                 }
             }
         case .shared:
@@ -57,7 +57,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {
-                    core.fire(event: CloudKitSubscriptionSuccessful(type: .sharedQuery))
+                    core.fire(event: CloudKitSubscriptionSuccessful(type: .sharedQuery, subscriptionID: self.subscriptionID))
                 }
             }
         case .public:
@@ -65,7 +65,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {
-                    core.fire(event: CloudKitSubscriptionSuccessful(type: .publicQuery))
+                    core.fire(event: CloudKitSubscriptionSuccessful(type: .publicQuery, subscriptionID: self.subscriptionID))
                 }
             }
         }

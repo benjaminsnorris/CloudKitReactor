@@ -122,3 +122,8 @@ public struct CloudKitServerChangeTokenUpdated: CloudKitDataEvent {
     public var zoneID: CKRecordZoneID
     public var token: CKServerChangeToken?
 }
+
+public struct CloudKitDatabaseServerChangeTokenUpdated: CloudKitDataEvent {
+    public var databaseScope: CKDatabaseScope
+    public var token: CKServerChangeToken?
+}
