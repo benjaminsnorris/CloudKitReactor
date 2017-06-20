@@ -24,7 +24,7 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     }
     
     public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
-        self.init([object], savePolicy: savePolicy, privateDatabase: databaseScope, completion: completion)
+        self.init([object], savePolicy: savePolicy, databaseScope: databaseScope, completion: completion)
     }
     
     public func execute(state: U, core: Core<U>) {

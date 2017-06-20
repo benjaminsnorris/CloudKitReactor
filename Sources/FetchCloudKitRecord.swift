@@ -13,21 +13,27 @@ public struct FetchCloudKitRecord<T: CloudKitSyncable, U: State>: Command {
     
     public var record: T
     public var completion: (() -> Void)?
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     
-    public init(for record: T, privateDatabase: Bool = true, completion: (() -> Void)? = nil) {
+    public init(for record: T, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
         self.record = record
-        self.privateDatabase = privateDatabase
+        self.databaseScope = databaseScope
         self.completion = completion
     }
     
     public func execute(state: U, core: Core<U>) {
-        if self.privateDatabase {
-            CKContainer.default().privateCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
                 self.process(record, error: error, state: state, core: core)
             }
-        } else {
-            CKContainer.default().publicCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
+        case .shared:
+            container.sharedCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
+                self.process(record, error: error, state: state, core: core)
+            }
+        case .public:
+            container.publicCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
                 self.process(record, error: error, state: state, core: core)
             }
         }

@@ -43,7 +43,7 @@ public struct SubscribeToDatabase<U: State>: Command {
                 case .public:
                     type = .publicDatabase
                 }
-                core.fire(event: CloudKitSubscriptionSuccessful(type: type))
+                core.fire(event: CloudKitSubscriptionSuccessful(type: type, subscriptionID: self.subscriptionID))
             }
         }
         

@@ -103,6 +103,7 @@ public enum CloudKitSubscriptionType {
 
 public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent {
     public var type: CloudKitSubscriptionType
+    public var subscriptionID: String?
 }
 
 public struct CloudKitSubscriptionError: CloudKitErrorEvent {
