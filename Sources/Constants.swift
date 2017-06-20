@@ -11,9 +11,9 @@ import CloudKit
 public enum CloudKitReactorConstants {
     
     static let defaultCustomZoneName = "DefaultCustomZone"
-    static let privateDatabaseSubscription = "privateDatabaseSubscription"
-    static let sharedDatabaseSubscription = "sharedDatabaseSubscription"
-
     public static let zoneID = CKRecordZoneID(zoneName: defaultCustomZoneName, ownerName: CKCurrentUserDefaultName)
+    
+    public static let privateDatabaseSubscription = "privateDatabaseSubscription"
+    public static let sharedDatabaseSubscription = "sharedDatabaseSubscription"
     
 }
