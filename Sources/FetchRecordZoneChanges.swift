@@ -41,8 +41,12 @@ public struct FetchRecordZoneChanges<U: State>: Command {
         } else {
             var allOptions = [CKRecordZoneID: CKFetchRecordZoneChangesOptions]()
             for (index, zoneID) in recordZoneIDs.enumerated() {
-                guard index < recordZoneChangesOptions.count else { break }
-                let options = recordZoneChangesOptions[index]
+                let options: CKFetchRecordZoneChangesOptions
+                if index < recordZoneChangesOptions.count {
+                    options = recordZoneChangesOptions[index]
+                } else {
+                    options = CKFetchRecordZoneChangesOptions()
+                }
                 options.previousServerChangeToken = zoneChangeTokens[zoneID]
                 allOptions[zoneID] = options
             }
