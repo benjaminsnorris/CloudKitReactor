@@ -15,10 +15,10 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
     public var options: CKQuerySubscriptionOptions
     public var notificationInfo: CKNotificationInfo
     public var subscriptionID: String?
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     public var zoneID: CKRecordZoneID
 
-    public init(predicate: NSPredicate = NSPredicate(value: true), options: CKQuerySubscriptionOptions = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion], notificationInfo: CKNotificationInfo? = nil, subscriptionID: String? = nil, privateDatabase: Bool = true, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), options: CKQuerySubscriptionOptions = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion], notificationInfo: CKNotificationInfo? = nil, subscriptionID: String? = nil, databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID) {
         self.predicate = predicate
         self.options = options
         if let notificationInfo = notificationInfo {
@@ -28,7 +28,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
             notificationInfo?.shouldSendContentAvailable = true
         }
         self.subscriptionID = subscriptionID
-        self.privateDatabase = privateDatabase
+        self.databaseScope = databaseScope
         self.zoneID = zoneID
     }
     
@@ -42,16 +42,26 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
         subscription.notificationInfo = notificationInfo
         subscription.zoneID = zoneID
         
-        if privateDatabase {
-            CKContainer.default().privateCloudDatabase.save(subscription) { subscription, error in
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.save(subscription) { subscription, error in
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {
                     core.fire(event: CloudKitSubscriptionSuccessful(type: .privateQuery))
                 }
             }
-        } else {
-            CKContainer.default().publicCloudDatabase.save(subscription) { subscription, error in
+        case .shared:
+            container.sharedCloudDatabase.save(subscription) { subscription, error in
+                if let error = error {
+                    core.fire(event: CloudKitSubscriptionError(error: error))
+                } else {
+                    core.fire(event: CloudKitSubscriptionSuccessful(type: .sharedQuery))
+                }
+            }
+        case .public:
+            container.publicCloudDatabase.save(subscription) { subscription, error in
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {

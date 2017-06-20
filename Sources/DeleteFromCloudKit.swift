@@ -12,11 +12,11 @@ import Reactor
 public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var objects: [T]
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     
-    public init(_ objects: [T], privateDatabase: Bool = true) {
+    public init(_ objects: [T], privateDatabase: CKDatabaseScope = .private) {
         self.objects = objects
-        self.privateDatabase = privateDatabase
+        self.databaseScope = privateDatabase
     }
     
     public func execute(state: U, core: Core<U>) {
@@ -32,10 +32,15 @@ public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
             }
         }
         operation.qualityOfService = .userInitiated
-        if privateDatabase {
-            CKContainer.default().privateCloudDatabase.add(operation)
-        } else {
-            CKContainer.default().publicCloudDatabase.add(operation)
+        
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.add(operation)
+        case .shared:
+            container.sharedCloudDatabase.add(operation)
+        case .public:
+            container.publicCloudDatabase.add(operation)
         }
 
     }

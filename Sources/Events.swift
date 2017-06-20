@@ -95,8 +95,10 @@ public struct CloudKitCurrentUserIdentityRetrieved: CloudKitDataEvent {
 public enum CloudKitSubscriptionType {
     case publicQuery
     case privateQuery
+    case sharedQuery
     case privateDatabase
     case sharedDatabase
+    case publicDatabase
 }
 
 public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent {

@@ -11,15 +11,15 @@ import Reactor
 
 public struct SubscribeToDatabase<U: State>: Command {
     
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     public var subscriptionID: String
     
-    public init(privateDatabase: Bool = true, subscriptionID: String? = nil) {
-        self.privateDatabase = privateDatabase
+    public init(databaseScope: CKDatabaseScope = .private, subscriptionID: String? = nil) {
+        self.databaseScope = databaseScope
         if let subscriptionID = subscriptionID {
             self.subscriptionID = subscriptionID
         } else {
-            self.subscriptionID = privateDatabase ? CloudKitReactorConstants.privateDatabaseSubscription : CloudKitReactorConstants.sharedDatabaseSubscription
+            self.subscriptionID = databaseScope == .private ? CloudKitReactorConstants.privateDatabaseSubscription : CloudKitReactorConstants.sharedDatabaseSubscription
         }
     }
     
@@ -34,14 +34,27 @@ public struct SubscribeToDatabase<U: State>: Command {
             if let error = error {
                 core.fire(event: CloudKitSubscriptionError(error: error))
             } else {
-                core.fire(event: CloudKitSubscriptionSuccessful(type: self.privateDatabase ? .privateDatabase : .sharedDatabase))
+                let type: CloudKitSubscriptionType
+                switch self.databaseScope {
+                case .private:
+                    type = .privateDatabase
+                case .shared:
+                    type = .sharedDatabase
+                case .public:
+                    type = .publicDatabase
+                }
+                core.fire(event: CloudKitSubscriptionSuccessful(type: type))
             }
         }
         
-        if privateDatabase {
-            CKContainer.default().privateCloudDatabase.add(operation)
-        } else {
-            CKContainer.default().sharedCloudDatabase.add(operation)
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.add(operation)
+        case .shared:
+            container.sharedCloudDatabase.add(operation)
+        case .public:
+            container.publicCloudDatabase.add(operation)
         }
     }
     

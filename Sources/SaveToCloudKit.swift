@@ -13,18 +13,18 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var objects: [T]
     public var savePolicy: CKRecordSavePolicy
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     public var completion: (() -> Void)?
 
-    public init(_ objects: [T], savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true, completion: (() -> Void)? = nil) {
+    public init(_ objects: [T], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
         self.objects = objects
         self.savePolicy = savePolicy
-        self.privateDatabase = privateDatabase
+        self.databaseScope = databaseScope
         self.completion = completion
     }
     
-    public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, privateDatabase: Bool = true, completion: (() -> Void)? = nil) {
-        self.init([object], savePolicy: savePolicy, privateDatabase: privateDatabase, completion: completion)
+    public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+        self.init([object], savePolicy: savePolicy, privateDatabase: databaseScope, completion: completion)
     }
     
     public func execute(state: U, core: Core<U>) {
@@ -58,10 +58,14 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
         }
 
         operation.qualityOfService = .userInitiated
-        if privateDatabase {
-            CKContainer.default().privateCloudDatabase.add(operation)
-        } else {
-            CKContainer.default().publicCloudDatabase.add(operation)
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.add(operation)
+        case .shared:
+            container.sharedCloudDatabase.add(operation)
+        case .public:
+            container.publicCloudDatabase.add(operation)
         }
         
     }

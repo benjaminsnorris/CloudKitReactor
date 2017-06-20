@@ -12,13 +12,13 @@ import CloudKit
 public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var predicate: NSPredicate
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     public var zoneID: CKRecordZoneID
     public var completion: ((Bool) -> Void)?
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), privateDatabase: Bool = true, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, completion: ((Bool) -> Void)? = nil) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, completion: ((Bool) -> Void)? = nil) {
         self.predicate = predicate
-        self.privateDatabase = privateDatabase
+        self.databaseScope = databaseScope
         self.zoneID = zoneID
         self.completion = completion
     }
@@ -49,10 +49,14 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 continuedQueryOperation.recordFetchedBlock = perRecordBlock
                 continuedQueryOperation.queryCompletionBlock = queryCompletionBlock
                 
-                if self.privateDatabase {
-                    CKContainer.default().privateCloudDatabase.add(continuedQueryOperation)
-                } else {
-                    CKContainer.default().publicCloudDatabase.add(continuedQueryOperation)
+                let container = CKContainer.default()
+                switch self.databaseScope {
+                case .private:
+                    container.privateCloudDatabase.add(continuedQueryOperation)
+                case .shared:
+                    container.sharedCloudDatabase.add(continuedQueryOperation)
+                case .public:
+                    container.publicCloudDatabase.add(continuedQueryOperation)
                 }
                 
             } else if let error = error {
@@ -65,10 +69,14 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
         operation.queryCompletionBlock = queryCompletionBlock
         
         operation.qualityOfService = .userInitiated
-        if privateDatabase {
-            CKContainer.default().privateCloudDatabase.add(operation)
-        } else {
-            CKContainer.default().publicCloudDatabase.add(operation)
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.add(operation)
+        case .shared:
+            container.sharedCloudDatabase.add(operation)
+        case .public:
+            container.publicCloudDatabase.add(operation)
         }
 
     }

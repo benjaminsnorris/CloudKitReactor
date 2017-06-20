@@ -15,19 +15,19 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
     public var recordZoneIDs: [CKRecordZoneID]
     public var recordZoneChangesOptions: [CKFetchRecordZoneChangesOptions]
     public var defaultZoneChangeToken: CKServerChangeToken?
-    public var privateDatabase: Bool
+    public var databaseScope: CKDatabaseScope
     public var completion: ((_ changes: Bool) -> Void)?
     
     fileprivate var defaultZoneOnly: Bool {
         return recordZoneIDs == [CloudKitReactorConstants.zoneID] && recordZoneChangesOptions.isEmpty
     }
     
-    public init(with objectTypes: [CloudKitSyncable.Type], recordZoneIDs: [CKRecordZoneID] = [CloudKitReactorConstants.zoneID], recordZoneChangesOptions: [CKFetchRecordZoneChangesOptions] = [], defaultZoneChangeToken: CKServerChangeToken? = nil, privateDatabase: Bool = true, completion: ((_ changes: Bool) -> Void)? = nil) {
+    public init(with objectTypes: [CloudKitSyncable.Type], recordZoneIDs: [CKRecordZoneID] = [CloudKitReactorConstants.zoneID], recordZoneChangesOptions: [CKFetchRecordZoneChangesOptions] = [], defaultZoneChangeToken: CKServerChangeToken? = nil, databaseScope: CKDatabaseScope = .private, completion: ((_ changes: Bool) -> Void)? = nil) {
         self.objectTypes = objectTypes
         self.recordZoneIDs = recordZoneIDs
         self.recordZoneChangesOptions = recordZoneChangesOptions
         self.defaultZoneChangeToken = defaultZoneChangeToken
-        self.privateDatabase = privateDatabase
+        self.databaseScope = databaseScope
         self.completion = completion
     }
     
@@ -82,10 +82,14 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
         
         operation.qualityOfService = .userInitiated
         
-        if privateDatabase {
-            CKContainer.default().privateCloudDatabase.add(operation)
-        } else {
-            CKContainer.default().publicCloudDatabase.add(operation)
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.add(operation)
+        case .shared:
+            container.sharedCloudDatabase.add(operation)
+        case .public:
+            container.publicCloudDatabase.add(operation)
         }
         
     }
