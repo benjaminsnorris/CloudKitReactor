@@ -12,20 +12,19 @@ import Reactor
 public struct SubscribeToDatabase<U: State>: Command {
     
     public var privateDatabase: Bool
-    public var subscriptionID: String?
+    public var subscriptionID: String
     
     public init(privateDatabase: Bool = true, subscriptionID: String? = nil) {
         self.privateDatabase = privateDatabase
-        self.subscriptionID = subscriptionID
+        if let subscriptionID = subscriptionID {
+            self.subscriptionID = subscriptionID
+        } else {
+            self.subscriptionID = privateDatabase ? CloudKitReactorConstants.privateDatabaseSubscription : CloudKitReactorConstants.sharedDatabaseSubscription
+        }
     }
     
     public func execute(state: U, core: Core<U>) {
-        let subscription: CKDatabaseSubscription
-        if let subscriptionID = subscriptionID {
-            subscription = CKDatabaseSubscription(subscriptionID: subscriptionID)
-        } else {
-            subscription = CKDatabaseSubscription()
-        }
+        let subscription = CKDatabaseSubscription(subscriptionID: subscriptionID)
         let notificationInfo = CKNotificationInfo()
         notificationInfo.shouldSendContentAvailable = true
         subscription.notificationInfo = notificationInfo
