@@ -32,6 +32,10 @@ public struct FetchRecordZoneChanges<U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
+        guard !recordZoneIDs.isEmpty else {
+            completion?(false)
+            return
+        }
         let operation = CKFetchRecordZoneChangesOperation()
         operation.recordZoneIDs = recordZoneIDs
         if defaultZoneOnly {
