@@ -92,7 +92,16 @@ public struct CloudKitCurrentUserIdentityRetrieved: CloudKitDataEvent {
     public var identity: CKUserIdentity
 }
 
-public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent { }
+public enum CloudKitSubscriptionType {
+    case publicQuery
+    case privateQuery
+    case privateDatabase
+    case sharedDatabase
+}
+
+public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent {
+    public var type: CloudKitSubscriptionType
+}
 
 public struct CloudKitSubscriptionError: CloudKitErrorEvent {
     public var error: Error

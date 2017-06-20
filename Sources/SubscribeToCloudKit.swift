@@ -40,7 +40,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {
-                    core.fire(event: CloudKitSubscriptionSuccessful())
+                    core.fire(event: CloudKitSubscriptionSuccessful(type: .privateQuery))
                 }
             }
         } else {
@@ -48,7 +48,7 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
                 if let error = error {
                     core.fire(event: CloudKitSubscriptionError(error: error))
                 } else {
-                    core.fire(event: CloudKitSubscriptionSuccessful())
+                    core.fire(event: CloudKitSubscriptionSuccessful(type: .publicQuery))
                 }
             }
         }
