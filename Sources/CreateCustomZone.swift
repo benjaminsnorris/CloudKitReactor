@@ -13,9 +13,11 @@ import Reactor
 public struct CreateCustomZone<U: State>: Command {
     
     public var zoneName: String?
+    public var completion: (() -> Void)?
     
-    public init(named zoneName: String? = nil) {
+    public init(named zoneName: String? = nil, completion: (() -> Void)? = nil) {
         self.zoneName = zoneName
+        self.completion = completion
     }
     
     public func execute(state: U, core: Core<U>) {
@@ -34,6 +36,7 @@ public struct CreateCustomZone<U: State>: Command {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .save))
                 core.fire(event: CloudKitDefaultCustomZoneCreated(zoneID: CloudKitReactorConstants.zoneID))
             }
+            self.completion?()
         }
         operation.qualityOfService = .userInitiated
         CKContainer.default().privateCloudDatabase.add(operation)
