@@ -69,8 +69,11 @@ public struct FetchRecordZoneChanges<U: State>: Command {
         }
         
         operation.recordChangedBlock = { record in
-            guard let ObjectType = self.objectType(for: record) else { return }
             changes = true
+            if let share = record as? CKShare {
+                core.fire(event: CloudKitUpdated(share))
+            }
+            guard let ObjectType = self.objectType(for: record) else { return }
             do {
                 var object = try ObjectType.init(record: record)
                 object.modifiedDate = Date()
