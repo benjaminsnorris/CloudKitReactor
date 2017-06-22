@@ -11,24 +11,23 @@ import CloudKit
 
 public struct SaveCloudKitRecords<U: State>: Command {
     
+    public var records: [CKRecord]
     public var objects: [CloudKitSyncable]
     public var savePolicy: CKRecordSavePolicy
     public var databaseScope: CKDatabaseScope
     public var completion: (() -> Void)?
     
-    public init(_ objects: [CloudKitSyncable], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+        self.records = records
         self.objects = objects
         self.savePolicy = savePolicy
         self.databaseScope = databaseScope
         self.completion = completion
     }
     
-    public init(_ object: CloudKitSyncable, savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
-        self.init([object], savePolicy: savePolicy, databaseScope: databaseScope, completion: completion)
-    }
-    
     public func execute(state: U, core: Core<U>) {
-        let records = objects.map { CKRecord(object: $0) }
+        var records = self.records
+        records += objects.map { CKRecord(object: $0) }
         guard !records.isEmpty else { return }
         let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         operation.savePolicy = savePolicy
