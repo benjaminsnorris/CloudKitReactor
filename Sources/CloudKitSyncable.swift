@@ -17,6 +17,7 @@ public protocol CloudKitSyncable {
     
     static var recordType: String { get }
     var cloudKitReference: CKReference { get }
+    var parentReference: CKReference? { get }
 }
 
 public extension CloudKitSyncable {
@@ -25,6 +26,10 @@ public extension CloudKitSyncable {
     
     public var cloudKitReference: CKReference {
         return CKReference(recordID: cloudKitRecordID, action: .none)
+    }
+    
+    public var parentReference: CKReference? {
+        return nil
     }
     
 }
@@ -37,6 +42,7 @@ public extension CKRecord {
         for (key, value) in object.cloudKitRecordProperties() {
             self[key] = value
         }
+        parent = object.parentReference
     }
     
 }
