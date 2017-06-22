@@ -1,0 +1,67 @@
+/*
+ |  _   ____   ____   _
+ | | |‾|  ⚈ |-| ⚈  |‾| |
+ | | |  ‾‾‾‾| |‾‾‾‾  | |
+ |  ‾        ‾        ‾
+ */
+
+import Foundation
+import Reactor
+import CloudKit
+
+public struct SaveCloudKitRecords<U: State>: Command {
+    
+    public var objects: [CloudKitSyncable]
+    public var savePolicy: CKRecordSavePolicy
+    public var databaseScope: CKDatabaseScope
+    public var completion: (() -> Void)?
+    
+    public init(_ objects: [CloudKitSyncable], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+        self.objects = objects
+        self.savePolicy = savePolicy
+        self.databaseScope = databaseScope
+        self.completion = completion
+    }
+    
+    public init(_ object: CloudKitSyncable, savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+        self.init([object], savePolicy: savePolicy, databaseScope: databaseScope, completion: completion)
+    }
+    
+    public func execute(state: U, core: Core<U>) {
+        let records = objects.map { CKRecord(object: $0) }
+        guard !records.isEmpty else { return }
+        let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        operation.savePolicy = savePolicy
+        operation.queuePriority = .high
+        operation.qualityOfService = .userInteractive
+        operation.perRecordCompletionBlock = { record, error in
+            if let error = error {
+                core.fire(event: CloudKitRecordError(error, for: record))
+            } else {
+                core.fire(event: CloudKitUpdated(record))
+            }
+        }
+        
+        operation.modifyRecordsCompletionBlock = { savedRecords, _, error in
+            if let error = error {
+                core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .save))
+            } else {
+                core.fire(event: CloudKitOperationUpdated(status: .completed, type: .save))
+            }
+            self.completion?()
+        }
+        
+        operation.qualityOfService = .userInitiated
+        let container = CKContainer.default()
+        switch databaseScope {
+        case .private:
+            container.privateCloudDatabase.add(operation)
+        case .shared:
+            container.sharedCloudDatabase.add(operation)
+        case .public:
+            container.publicCloudDatabase.add(operation)
+        }
+        
+    }
+    
+}
