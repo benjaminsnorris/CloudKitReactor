@@ -15,9 +15,9 @@ public struct SaveCloudKitRecords<U: State>: Command {
     public var objects: [CloudKitSyncable]
     public var savePolicy: CKRecordSavePolicy
     public var databaseScope: CKDatabaseScope
-    public var completion: (() -> Void)?
+    public var completion: ((Error?) -> Void)?
     
-    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: ((Error?) -> Void)? = nil) {
         self.records = records
         self.objects = objects
         self.savePolicy = savePolicy
@@ -47,7 +47,7 @@ public struct SaveCloudKitRecords<U: State>: Command {
             } else {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .save))
             }
-            self.completion?()
+            self.completion?(error)
         }
         
         operation.qualityOfService = .userInitiated
