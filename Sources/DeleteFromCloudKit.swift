@@ -9,18 +9,31 @@ import Foundation
 import CloudKit
 import Reactor
 
-public struct DeleteFromCloudKit<T: CloudKitSyncable, U: State>: Command {
+public struct DeleteFromCloudKit<U: State>: Command {
     
-    public var objects: [T]
+    public var objects: [CloudKitSyncable]
+    public var records: [CKRecord]
     public var databaseScope: CKDatabaseScope
     
-    public init(_ objects: [T], privateDatabase: CKDatabaseScope = .private) {
+    public init(_ objects: [CloudKitSyncable] = [], records: [CKRecord] = [], databaseScope: CKDatabaseScope = .private) {
         self.objects = objects
-        self.databaseScope = privateDatabase
+        self.records = records
+        self.databaseScope = databaseScope
+    }
+    
+    public init(_ object: CloudKitSyncable? = nil, record: CKRecord? = nil, databaseScope: CKDatabaseScope = .private) {
+        if let object = object {
+            self.init([object], databaseScope: databaseScope)
+        } else if let record = record {
+            self.init(records: [record], databaseScope: databaseScope)
+        } else {
+            self.init([])
+        }
     }
     
     public func execute(state: U, core: Core<U>) {
-        let recordIDs = objects.flatMap { $0.cloudKitRecordID }
+        var recordIDs = objects.flatMap { $0.cloudKitRecordID }
+        recordIDs += records.map { $0.recordID }
         guard !recordIDs.isEmpty else { return }
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)
         operation.savePolicy = .ifServerRecordUnchanged
