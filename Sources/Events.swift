@@ -127,3 +127,12 @@ public struct CloudKitDatabaseServerChangeTokenUpdated: CloudKitDataEvent {
     public var databaseScope: CKDatabaseScope
     public var token: CKServerChangeToken?
 }
+
+public struct CloudKitShareError: CloudKitErrorEvent {
+    public var error: Error
+    public var metadata: CKShareMetadata
+    public init(_ error: Error, for metadata: CKShareMetadata) {
+        self.error = error
+        self.metadata = metadata
+    }
+}
