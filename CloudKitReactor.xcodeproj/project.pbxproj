@@ -14,7 +14,6 @@
 		7072FFC71E2FC53000472CA5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7072FFC41E2FC52600472CA5 /* Info.plist */; };
 		7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */; };
 		7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */; };
-		7072FFCE1E2FC64C00472CA5 /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7072FFCD1E2FC64C00472CA5 /* Reactor.framework */; };
 		7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */; };
 		7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD31E2FC7DE00472CA5 /* Events.swift */; };
 		7072FFDA1E31174B00472CA5 /* DeleteFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD91E31174B00472CA5 /* DeleteFromCloudKit.swift */; };
@@ -24,13 +23,14 @@
 		70A797B01ED45A380082A267 /* FetchCurrentUserID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */; };
 		70A797B21ED45C810082A267 /* DiscoverCurrentUserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */; };
 		E71D8B6D1EEF95CA00817FB6 /* FetchRecordZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D8B6C1EEF95C900817FB6 /* FetchRecordZone.swift */; };
+		E76AF9A11F183AF90048DA35 /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7955E7F1F0DA12C00B8E7ED /* Reactor.framework */; };
+		E76AF9A51F183C870048DA35 /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7955E7F1F0DA12C00B8E7ED /* Reactor.framework */; };
 		E771926D1EF8E113001492D4 /* SubscribeToDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E771926C1EF8E112001492D4 /* SubscribeToDatabase.swift */; };
 		E77192711EF8EC3C001492D4 /* FetchRecordZoneChanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77192701EF8EC3C001492D4 /* FetchRecordZoneChanges.swift */; };
 		E7955DFE1F0D53B400B8E7ED /* CloudKitReactor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7072FFBB1E2FC4C500472CA5 /* CloudKitReactor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E7955DFF1F0D53BC00B8E7ED /* CheckCloudKitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */; };
 		E7955E001F0D53BC00B8E7ED /* CreateCustomZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1ED221EEF32D300C50D6B /* CreateCustomZone.swift */; };
 		E7955E011F0D53BC00B8E7ED /* FetchRecordZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D8B6C1EEF95C900817FB6 /* FetchRecordZone.swift */; };
-		E7955E021F0D53BC00B8E7ED /* SaveToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */; };
 		E7955E031F0D53BC00B8E7ED /* SaveCloudKitRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE648E1EFB575F00461235 /* SaveCloudKitRecords.swift */; };
 		E7955E041F0D53BC00B8E7ED /* FetchFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */; };
 		E7955E051F0D53BC00B8E7ED /* FetchChangesFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BA1AC71EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift */; };
@@ -44,10 +44,10 @@
 		E7955E0F1F0D53C200B8E7ED /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD31E2FC7DE00472CA5 /* Events.swift */; };
 		E7955E101F0D53C200B8E7ED /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1ED241EEF51AC00C50D6B /* Constants.swift */; };
 		E7955E111F0D53C200B8E7ED /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */; };
-		E7955E211F0D545800B8E7ED /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7955E201F0D545800B8E7ED /* Reactor.framework */; };
 		E7A1ED231EEF32D300C50D6B /* CreateCustomZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1ED221EEF32D300C50D6B /* CreateCustomZone.swift */; };
 		E7A1ED251EEF51AC00C50D6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A1ED241EEF51AC00C50D6B /* Constants.swift */; };
 		E7BA1AC81EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BA1AC71EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift */; };
+		E7D0A6141F167DDA00F9E9BC /* SaveToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */; };
 		E7D52A261EFCC1A300873FE3 /* AcceptShares.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D52A251EFCC1A300873FE3 /* AcceptShares.swift */; };
 		E7DE648F1EFB575F00461235 /* SaveCloudKitRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE648E1EFB575F00461235 /* SaveCloudKitRecords.swift */; };
 /* End PBXBuildFile section */
@@ -72,7 +72,6 @@
 		7072FFC41E2FC52600472CA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCloudKit.swift; sourceTree = "<group>"; };
 		7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFromCloudKit.swift; sourceTree = "<group>"; };
-		7072FFCD1E2FC64C00472CA5 /* Reactor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reactor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 		7072FFD31E2FC7DE00472CA5 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		7072FFD91E31174B00472CA5 /* DeleteFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteFromCloudKit.swift; sourceTree = "<group>"; };
@@ -85,7 +84,7 @@
 		E771926C1EF8E112001492D4 /* SubscribeToDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeToDatabase.swift; sourceTree = "<group>"; };
 		E77192701EF8EC3C001492D4 /* FetchRecordZoneChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRecordZoneChanges.swift; sourceTree = "<group>"; };
 		E7955DF61F0D537900B8E7ED /* CloudKitReactor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CloudKitReactor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7955E201F0D545800B8E7ED /* Reactor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reactor.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/PowerMeter-axssdhbvggpiqodrbemughvyutoh/Build/Products/Debug-watchsimulator/Reactor.framework"; sourceTree = "<group>"; };
+		E7955E7F1F0DA12C00B8E7ED /* Reactor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reactor.framework; path = Reactor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A1ED221EEF32D300C50D6B /* CreateCustomZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCustomZone.swift; sourceTree = "<group>"; };
 		E7A1ED241EEF51AC00C50D6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E7BA1AC71EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchChangesFromCloudKit.swift; sourceTree = "<group>"; };
@@ -98,7 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7072FFCE1E2FC64C00472CA5 /* Reactor.framework in Frameworks */,
+				E76AF9A51F183C870048DA35 /* Reactor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7955E211F0D545800B8E7ED /* Reactor.framework in Frameworks */,
+				E76AF9A11F183AF90048DA35 /* Reactor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,8 +181,7 @@
 		7072FFCC1E2FC64C00472CA5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E7955E201F0D545800B8E7ED /* Reactor.framework */,
-				7072FFCD1E2FC64C00472CA5 /* Reactor.framework */,
+				E7955E7F1F0DA12C00B8E7ED /* Reactor.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -398,9 +396,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7955E021F0D53BC00B8E7ED /* SaveToCloudKit.swift in Sources */,
 				E7955E0C1F0D53BC00B8E7ED /* FetchCurrentUserID.swift in Sources */,
 				E7955E0E1F0D53BC00B8E7ED /* AcceptShares.swift in Sources */,
+				E7D0A6141F167DDA00F9E9BC /* SaveToCloudKit.swift in Sources */,
 				E7955E041F0D53BC00B8E7ED /* FetchFromCloudKit.swift in Sources */,
 				E7955E111F0D53C200B8E7ED /* CloudKitSyncable.swift in Sources */,
 				E7955E0B1F0D53BC00B8E7ED /* UpdateCloudKitBadge.swift in Sources */,
