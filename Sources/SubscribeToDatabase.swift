@@ -13,20 +13,26 @@ public struct SubscribeToDatabase<U: State>: Command {
     
     public var databaseScope: CKDatabaseScope
     public var subscriptionID: String
+    public var notificationInfo: CKNotificationInfo
     
-    public init(databaseScope: CKDatabaseScope = .private, subscriptionID: String? = nil) {
+    public init(databaseScope: CKDatabaseScope = .private, subscriptionID: String? = nil, notificationInfo: CKNotificationInfo? = nil) {
         self.databaseScope = databaseScope
         if let subscriptionID = subscriptionID {
             self.subscriptionID = subscriptionID
         } else {
             self.subscriptionID = databaseScope == .private ? CloudKitReactorConstants.privateDatabaseSubscription : CloudKitReactorConstants.sharedDatabaseSubscription
         }
+        if let notificationInfo = notificationInfo {
+            self.notificationInfo = notificationInfo
+        } else {
+            let notificationInfo = CKNotificationInfo()
+            notificationInfo.shouldSendContentAvailable = true
+            self.notificationInfo = notificationInfo
+        }
     }
     
     public func execute(state: U, core: Core<U>) {
         let subscription = CKDatabaseSubscription(subscriptionID: subscriptionID)
-        let notificationInfo = CKNotificationInfo()
-        notificationInfo.shouldSendContentAvailable = true
         subscription.notificationInfo = notificationInfo
         let operation = CKModifySubscriptionsOperation(subscriptionsToSave: [subscription], subscriptionIDsToDelete: [])
         operation.qualityOfService = .utility
