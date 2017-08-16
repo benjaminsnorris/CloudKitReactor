@@ -29,7 +29,7 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public func execute(state: U, core: Core<U>) {
         let records = objects.map { CKRecord(object: $0) }
-        guard !records.isEmpty else { return }
+        guard !records.isEmpty else { completion?(); return }
         let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
         operation.savePolicy = savePolicy
         operation.queuePriority = .high
