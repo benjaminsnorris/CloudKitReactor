@@ -14,9 +14,9 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     public var predicate: NSPredicate
     public var databaseScope: CKDatabaseScope
     public var zoneID: CKRecordZoneID
-    public var completion: ((Bool) -> Void)?
+    public var completion: ((Int) -> Void)?
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, completion: ((Bool) -> Void)? = nil) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, completion: ((Int) -> Void)? = nil) {
         self.predicate = predicate
         self.databaseScope = databaseScope
         self.zoneID = zoneID
@@ -64,7 +64,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
             } else {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .fetch))
             }
-            self.completion?(!fetchedObjects.isEmpty)
+            self.completion?(fetchedObjects.count)
         }
         operation.queryCompletionBlock = queryCompletionBlock
         
