@@ -13,6 +13,7 @@ public protocol CloudKitSyncable {
     
     var cloudKitRecordID: CKRecordID { get }
     var modifiedDate: Date { get set }
+    var savedToCloudKit: Bool { get set }
     func cloudKitRecordProperties() -> [String: CKRecordValue?]
     
     static var recordType: String { get }
@@ -30,6 +31,11 @@ public extension CloudKitSyncable {
     
     public var parentReference: CKReference? {
         return nil
+    }
+    
+    public mutating func markUpdated() {
+        modifiedDate = Date()
+        savedToCloudKit = false
     }
     
 }
