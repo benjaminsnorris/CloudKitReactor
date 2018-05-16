@@ -15,11 +15,13 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     public var databaseScope: CKDatabaseScope
     public var zoneID: CKRecordZoneID
     public var completion: ((Int) -> Void)?
+    let returnObjects: Bool
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, completion: ((Int) -> Void)? = nil) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, returnObjects: Bool = true, completion: ((Int) -> Void)? = nil) {
         self.predicate = predicate
         self.databaseScope = databaseScope
         self.zoneID = zoneID
+        self.returnObjects = returnObjects
         self.completion = completion
     }
     
@@ -28,15 +30,20 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
         let operation = CKQueryOperation(query: query)
         operation.zoneID = zoneID
         var fetchedObjects = [T]()
+        var fetchedRecords = [CKRecord]()
 
         let perRecordBlock = { (fetchedRecord: CKRecord) -> Void in
-            do {
-                var object = try T(record: fetchedRecord)
-                object.modifiedDate = Date()
-                core.fire(event: CloudKitUpdated(object))
-                fetchedObjects.append(object)
-            } catch {
-                core.fire(event: CloudKitRecordError(error, for: fetchedRecord))
+            if self.returnObjects {
+                do {
+                    var object = try T(record: fetchedRecord)
+                    object.modifiedDate = Date()
+                    core.fire(event: CloudKitUpdated(object))
+                    fetchedObjects.append(object)
+                } catch {
+                    core.fire(event: CloudKitRecordError(error, for: fetchedRecord))
+                }
+            } else {
+                fetchedRecords.append(fetchedRecord)
             }
         }
         operation.recordFetchedBlock = perRecordBlock
@@ -64,7 +71,13 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
             } else {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .fetch))
             }
-            self.completion?(fetchedObjects.count)
+            let count: Int
+            if self.returnObjects {
+                count = fetchedObjects.count
+            } else {
+                count = fetchedRecords.count
+            }
+            self.completion?(count)
         }
         operation.queryCompletionBlock = queryCompletionBlock
         
