@@ -35,8 +35,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
         let perRecordBlock = { (fetchedRecord: CKRecord) -> Void in
             if self.returnObjects {
                 do {
-                    var object = try T(record: fetchedRecord)
-                    object.modifiedDate = Date()
+                    let object = try T(record: fetchedRecord)
                     core.fire(event: CloudKitUpdated(object))
                     fetchedObjects.append(object)
                 } catch {

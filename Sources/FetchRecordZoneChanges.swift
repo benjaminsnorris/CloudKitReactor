@@ -75,8 +75,7 @@ public struct FetchRecordZoneChanges<U: State>: Command {
             }
             guard let ObjectType = self.objectType(for: record) else { return }
             do {
-                var object = try ObjectType.init(record: record)
-                object.modifiedDate = Date()
+                let object = try ObjectType.init(record: record)
                 core.fire(event: CloudKitUpdated(object))
             } catch {
                 core.fire(event: CloudKitRecordError(error, for: record))
