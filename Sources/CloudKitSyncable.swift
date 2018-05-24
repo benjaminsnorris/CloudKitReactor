@@ -13,16 +13,12 @@ public protocol CloudKitSyncable {
     
     var encodedSystemFields: Data? { get }
     var cloudKitRecordProperties: [String: CKRecordValue?] { get }
-    var cloudKitRecordChanges: [String: Any] { get }
+    var cloudKitRecordChanges: [String: Any] { get set }
     
     var cloudKitRecordID: CKRecordID { get }
     static var recordType: String { get }
     var cloudKitReference: CKReference { get }
     var parentReference: CKReference? { get }
-}
-
-public protocol CloudKitIdentifiable {
-    var identifier: String { get }
 }
 
 public extension CloudKitSyncable {
@@ -67,10 +63,33 @@ public extension CloudKitSyncable {
     
 }
 
+public protocol CloudKitIdentifiable {
+    var identifier: String { get }
+}
+
 public extension CloudKitSyncable where Self: CloudKitIdentifiable {
     
     public var cloudKitRecordID: CKRecordID {
         return CKRecordID(recordName: identifier, zoneID: CloudKitReactorConstants.zoneID)
+    }
+    
+}
+
+public protocol CloudKitDiffable: CloudKitSyncable {
+    func diff(from original: Self) -> [String: Any]
+    mutating func recordChanges(from original: Self)
+}
+
+public extension CloudKitDiffable {
+    
+    /// Records changes to an object in `cloudKitRecordChanges` to be persisted.
+    ///
+    /// - Parameter original: Original object before being modified
+    public mutating func recordChanges(from original: Self) {
+        let changes = diff(from: original)
+        for (key, value) in changes {
+            cloudKitRecordChanges[key] = value
+        }
     }
     
 }
