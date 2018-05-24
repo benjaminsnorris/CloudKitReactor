@@ -19,6 +19,12 @@ public protocol CloudKitSyncable {
     static var recordType: String { get }
     var cloudKitReference: CKReference { get }
     var parentReference: CKReference? { get }
+    
+    var needsSavingToCloudKit: Bool { get }
+    var isSavedInCloudKit: Bool { get }
+    var hasUnsavedChanges: Bool { get }
+    var recordToSave: CKRecord? { get }
+    var recordWithChanges: CKRecord? { get }
 }
 
 public extension CloudKitSyncable {
