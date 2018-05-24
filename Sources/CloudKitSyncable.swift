@@ -13,7 +13,7 @@ public protocol CloudKitSyncable {
     
     var encodedSystemFields: Data? { get }
     var cloudKitRecordProperties: [String: CKRecordValue?] { get }
-    var cloudKitRecordChanges: [String: Any] { get set }
+    var cloudKitRecordChanges: [String: Any?] { get set }
     
     var cloudKitRecordID: CKRecordID { get }
     static var recordType: String { get }
