@@ -17,7 +17,7 @@ public struct SaveCloudKitRecords<U: State>: Command {
     public var databaseScope: CKDatabaseScope
     public var completion: ((Error?) -> Void)?
     
-    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: ((Error?) -> Void)? = nil) {
+    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKRecordSavePolicy = .ifServerRecordUnchanged, databaseScope: CKDatabaseScope = .private, completion: ((Error?) -> Void)? = nil) {
         self.records = records
         self.objects = objects
         self.savePolicy = savePolicy
