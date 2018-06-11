@@ -11,10 +11,12 @@ import CloudKit
 
 public struct UpdateCloudKitBadge<U: State>: Command {
     
-    public var badgeCount: Int
+    let badgeCount: Int
+    let completion: () -> Void
     
-    public init(to count: Int) {
+    public init(to count: Int, completion: @escaping (() -> Void) = { }) {
         badgeCount = count
+        self.completion = completion
     }
     
     public func execute(state: U, core: Core<U>) {
@@ -25,6 +27,7 @@ public struct UpdateCloudKitBadge<U: State>: Command {
             } else {
                 core.fire(event: CloudKitBadgeUpdated(badgeCount: self.badgeCount))
             }
+            self.completion()
         }
         operation.qualityOfService = .userInitiated
         CKContainer.default().add(operation)
