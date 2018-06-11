@@ -66,6 +66,10 @@ public struct CloudKitOperationUpdated: CloudKitDataEvent {
     }
 }
 
+public struct CloudKitAccountChanged: CloudKitDataEvent {
+    public init() { }
+}
+
 public struct CloudKitStatusRetrieved: CloudKitDataEvent {
     public var status: CKAccountStatus
     public var error: Error?
