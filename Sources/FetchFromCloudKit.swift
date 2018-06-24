@@ -14,10 +14,10 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     public var predicate: NSPredicate
     public var databaseScope: CKDatabaseScope
     public var zoneID: CKRecordZoneID
-    public var completion: ((Int) -> Void)?
+    public var completion: ((Int?) -> Void)?
     let returnObjects: Bool
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, returnObjects: Bool = true, completion: ((Int) -> Void)? = nil) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, returnObjects: Bool = true, completion: ((Int?) -> Void)? = nil) {
         self.predicate = predicate
         self.databaseScope = databaseScope
         self.zoneID = zoneID
@@ -67,16 +67,17 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                 
             } else if let error = error {
                 core.fire(event: CloudKitOperationUpdated(status: .errored(error), type: .fetch))
+                self.completion?(nil)
             } else {
                 core.fire(event: CloudKitOperationUpdated(status: .completed, type: .fetch))
+                let count: Int
+                if self.returnObjects {
+                    count = fetchedObjects.count
+                } else {
+                    count = fetchedRecords.count
+                }
+                self.completion?(count)
             }
-            let count: Int
-            if self.returnObjects {
-                count = fetchedObjects.count
-            } else {
-                count = fetchedRecords.count
-            }
-            self.completion?(count)
         }
         operation.queryCompletionBlock = queryCompletionBlock
         
