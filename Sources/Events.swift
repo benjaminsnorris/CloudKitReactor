@@ -110,6 +110,11 @@ public struct CloudKitSubscriptionSuccessful: CloudKitDataEvent {
     public var subscriptionID: String?
 }
 
+public struct CloudKitSubscriptionRemoved: CloudKitDataEvent {
+    public var type: CloudKitSubscriptionType
+    public var subscriptionId: String
+}
+
 public struct CloudKitSubscriptionError: CloudKitErrorEvent {
     public var error: Error
 }

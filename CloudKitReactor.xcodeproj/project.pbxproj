@@ -22,6 +22,7 @@
 		708AA8581E4384C30009C64D /* UpdateCloudKitBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */; };
 		70A797B01ED45A380082A267 /* FetchCurrentUserID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */; };
 		70A797B21ED45C810082A267 /* DiscoverCurrentUserIdentity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */; };
+		E71CD435218CF82D0021D366 /* UnsubscribeFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CD434218CF82D0021D366 /* UnsubscribeFromCloudKit.swift */; };
 		E71D8B6D1EEF95CA00817FB6 /* FetchRecordZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71D8B6C1EEF95C900817FB6 /* FetchRecordZone.swift */; };
 		E76AF9A11F183AF90048DA35 /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7955E7F1F0DA12C00B8E7ED /* Reactor.framework */; };
 		E76AF9A51F183C870048DA35 /* Reactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7955E7F1F0DA12C00B8E7ED /* Reactor.framework */; };
@@ -80,6 +81,7 @@
 		708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCloudKitBadge.swift; sourceTree = "<group>"; };
 		70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchCurrentUserID.swift; sourceTree = "<group>"; };
 		70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCurrentUserIdentity.swift; sourceTree = "<group>"; };
+		E71CD434218CF82D0021D366 /* UnsubscribeFromCloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsubscribeFromCloudKit.swift; sourceTree = "<group>"; };
 		E71D8B6C1EEF95C900817FB6 /* FetchRecordZone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRecordZone.swift; sourceTree = "<group>"; };
 		E771926C1EF8E112001492D4 /* SubscribeToDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeToDatabase.swift; sourceTree = "<group>"; };
 		E77192701EF8EC3C001492D4 /* FetchRecordZoneChanges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchRecordZoneChanges.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				7072FFE01E3137ED00472CA5 /* SubscribeToCloudKit.swift */,
 				E771926C1EF8E112001492D4 /* SubscribeToDatabase.swift */,
 				708AA8571E4384C30009C64D /* UpdateCloudKitBadge.swift */,
+				E71CD434218CF82D0021D366 /* UnsubscribeFromCloudKit.swift */,
 				70A797AF1ED45A380082A267 /* FetchCurrentUserID.swift */,
 				70A797B11ED45C810082A267 /* DiscoverCurrentUserIdentity.swift */,
 				E7D52A251EFCC1A300873FE3 /* AcceptShares.swift */,
@@ -367,6 +370,7 @@
 				70A797B21ED45C810082A267 /* DiscoverCurrentUserIdentity.swift in Sources */,
 				7072FFE11E3137ED00472CA5 /* SubscribeToCloudKit.swift in Sources */,
 				E7D52A261EFCC1A300873FE3 /* AcceptShares.swift in Sources */,
+				E71CD435218CF82D0021D366 /* UnsubscribeFromCloudKit.swift in Sources */,
 				E7BA1AC81EEEC01C00C7E6CE /* FetchChangesFromCloudKit.swift in Sources */,
 				70A797B01ED45A380082A267 /* FetchCurrentUserID.swift in Sources */,
 				7072FFD41E2FC7DE00472CA5 /* Events.swift in Sources */,
