@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70039E2C1E3904E4005041F1 /* CheckCloudKitStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */; };
-		7072FFAA1E2FC44300472CA5 /* CloudKitReactor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7072FFA01E2FC44200472CA5 /* CloudKitReactor.framework */; };
 		7072FFBC1E2FC4C500472CA5 /* CloudKitReactor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7072FFBB1E2FC4C500472CA5 /* CloudKitReactor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7072FFC01E2FC4E900472CA5 /* CloudKitReactorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFBE1E2FC4E100472CA5 /* CloudKitReactorTests.swift */; };
-		7072FFC71E2FC53000472CA5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7072FFC41E2FC52600472CA5 /* Info.plist */; };
 		7072FFC91E2FC59900472CA5 /* SaveToCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */; };
 		7072FFCB1E2FC5A000472CA5 /* FetchFromCloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */; };
 		7072FFD21E2FC72600472CA5 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */; };
@@ -53,24 +50,11 @@
 		E7DE648F1EFB575F00461235 /* SaveCloudKitRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE648E1EFB575F00461235 /* SaveCloudKitRecords.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7072FFAB1E2FC44300472CA5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7072FF971E2FC44200472CA5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7072FF9F1E2FC44200472CA5;
-			remoteInfo = CloudKitReactor;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		70039E2B1E3904E4005041F1 /* CheckCloudKitStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckCloudKitStatus.swift; sourceTree = "<group>"; };
 		7072FFA01E2FC44200472CA5 /* CloudKitReactor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CloudKitReactor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7072FFA91E2FC44300472CA5 /* CloudKitReactorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudKitReactorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7072FFBB1E2FC4C500472CA5 /* CloudKitReactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudKitReactor.h; sourceTree = "<group>"; };
-		7072FFBE1E2FC4E100472CA5 /* CloudKitReactorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitReactorTests.swift; sourceTree = "<group>"; };
 		7072FFC21E2FC50B00472CA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7072FFC41E2FC52600472CA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7072FFC81E2FC59900472CA5 /* SaveToCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveToCloudKit.swift; sourceTree = "<group>"; };
 		7072FFCA1E2FC5A000472CA5 /* FetchFromCloudKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchFromCloudKit.swift; sourceTree = "<group>"; };
 		7072FFD11E2FC72600472CA5 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
@@ -103,14 +87,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7072FFA61E2FC44300472CA5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7072FFAA1E2FC44300472CA5 /* CloudKitReactor.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E7955DF21F0D537900B8E7ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				7072FFBA1E2FC4C500472CA5 /* Sources */,
-				7072FFBD1E2FC4E100472CA5 /* Tests */,
 				7072FFA11E2FC44200472CA5 /* Products */,
 				7072FFCC1E2FC64C00472CA5 /* Frameworks */,
 			);
@@ -136,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				7072FFA01E2FC44200472CA5 /* CloudKitReactor.framework */,
-				7072FFA91E2FC44300472CA5 /* CloudKitReactorTests.xctest */,
 				E7955DF61F0D537900B8E7ED /* CloudKitReactor.framework */,
 			);
 			name = Products;
@@ -154,28 +128,11 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		7072FFBD1E2FC4E100472CA5 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				7072FFBE1E2FC4E100472CA5 /* CloudKitReactorTests.swift */,
-				7072FFC61E2FC52800472CA5 /* Supporting Files */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
 		7072FFC11E2FC4FA00472CA5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				7072FFBB1E2FC4C500472CA5 /* CloudKitReactor.h */,
 				7072FFC21E2FC50B00472CA5 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7072FFC61E2FC52800472CA5 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				7072FFC41E2FC52600472CA5 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -252,24 +209,6 @@
 			productReference = 7072FFA01E2FC44200472CA5 /* CloudKitReactor.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7072FFA81E2FC44300472CA5 /* CloudKitReactorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7072FFB71E2FC44300472CA5 /* Build configuration list for PBXNativeTarget "CloudKitReactorTests" */;
-			buildPhases = (
-				7072FFA51E2FC44300472CA5 /* Sources */,
-				7072FFA61E2FC44300472CA5 /* Frameworks */,
-				7072FFA71E2FC44300472CA5 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7072FFAC1E2FC44300472CA5 /* PBXTargetDependency */,
-			);
-			name = CloudKitReactorTests;
-			productName = CloudKitReactorTests;
-			productReference = 7072FFA91E2FC44300472CA5 /* CloudKitReactorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E7955DF51F0D537900B8E7ED /* CloudKitReactor-watchOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7955DFD1F0D537900B8E7ED /* Build configuration list for PBXNativeTarget "CloudKitReactor-watchOS" */;
@@ -304,12 +243,6 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
-					7072FFA81E2FC44300472CA5 = {
-						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = M9Y5WF87VL;
-						LastSwiftMigration = 0920;
-						ProvisioningStyle = Automatic;
-					};
 					E7955DF51F0D537900B8E7ED = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = M9Y5WF87VL;
@@ -331,7 +264,6 @@
 			projectRoot = "";
 			targets = (
 				7072FF9F1E2FC44200472CA5 /* CloudKitReactor */,
-				7072FFA81E2FC44300472CA5 /* CloudKitReactorTests */,
 				E7955DF51F0D537900B8E7ED /* CloudKitReactor-watchOS */,
 			);
 		};
@@ -342,14 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7072FFA71E2FC44300472CA5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7072FFC71E2FC53000472CA5 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,14 +314,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7072FFA51E2FC44300472CA5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7072FFC01E2FC4E900472CA5 /* CloudKitReactorTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E7955DF11F0D537900B8E7ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -423,14 +339,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7072FFAC1E2FC44300472CA5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7072FF9F1E2FC44200472CA5 /* CloudKitReactor */;
-			targetProxy = 7072FFAB1E2FC44300472CA5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7072FFB21E2FC44300472CA5 /* Debug */ = {
@@ -597,34 +505,6 @@
 			};
 			name = Release;
 		};
-		7072FFB81E2FC44300472CA5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = M9Y5WF87VL;
-				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.CloudKitReactorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		7072FFB91E2FC44300472CA5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = M9Y5WF87VL;
-				INFOPLIST_FILE = "$(SRCROOT)/SupportingFiles/Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = design.bsn.CloudKitReactorTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
 		E7955DFB1F0D537900B8E7ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -690,15 +570,6 @@
 			buildConfigurations = (
 				7072FFB51E2FC44300472CA5 /* Debug */,
 				7072FFB61E2FC44300472CA5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7072FFB71E2FC44300472CA5 /* Build configuration list for PBXNativeTarget "CloudKitReactorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7072FFB81E2FC44300472CA5 /* Debug */,
-				7072FFB91E2FC44300472CA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
