@@ -34,7 +34,7 @@ public struct DeleteFromCloudKit<U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
-        var recordIDs = objects.flatMap { $0.cloudKitRecordID }
+        var recordIDs = objects.compactMap { $0.cloudKitRecordID }
         recordIDs += records.map { $0.recordID }
         guard !recordIDs.isEmpty else { completion?(); return }
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)

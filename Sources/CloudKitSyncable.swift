@@ -29,33 +29,33 @@ public protocol CloudKitSyncable {
 
 public extension CloudKitSyncable {
     
-    public static var recordType: String { return String(describing: self) }
+    static var recordType: String { return String(describing: self) }
     
-    public var needsSavingToCloudKit: Bool {
+    var needsSavingToCloudKit: Bool {
         return !isSavedInCloudKit || hasUnsavedChanges
     }
     
-    public var isSavedInCloudKit: Bool {
+    var isSavedInCloudKit: Bool {
         return encodedSystemFields != nil
     }
     
-    public var hasUnsavedChanges: Bool {
+    var hasUnsavedChanges: Bool {
         return !cloudKitRecordChanges.isEmpty
     }
     
-    public var cloudKitReference: CKReference {
+    var cloudKitReference: CKReference {
         return CKReference(recordID: cloudKitRecordID, action: .none)
     }
     
-    public var parentReference: CKReference? {
+    var parentReference: CKReference? {
         return nil
     }
     
-    public var recordToSave: CKRecord? {
+    var recordToSave: CKRecord? {
         return isSavedInCloudKit ? recordWithChanges : CKRecord(object: self)
     }
     
-    public var recordWithChanges: CKRecord? {
+    var recordWithChanges: CKRecord? {
         guard hasUnsavedChanges, let encodedSystemFields = encodedSystemFields else { return nil }
         let coder = NSKeyedUnarchiver(forReadingWith: encodedSystemFields)
         coder.requiresSecureCoding = true
@@ -75,7 +75,7 @@ public protocol CloudKitIdentifiable {
 
 public extension CloudKitSyncable where Self: CloudKitIdentifiable {
     
-    public var cloudKitRecordID: CKRecordID {
+    var cloudKitRecordID: CKRecordID {
         return CKRecordID(recordName: identifier, zoneID: CloudKitReactorConstants.zoneID)
     }
     
@@ -91,7 +91,7 @@ public extension CloudKitDiffable {
     /// Records changes to an object in `cloudKitRecordChanges` to be persisted.
     ///
     /// - Parameter original: Original object before being modified
-    public mutating func recordChanges(from original: Self) {
+    mutating func recordChanges(from original: Self) {
         let changes = diff(from: original)
         for (key, value) in changes {
             cloudKitRecordChanges[key] = value
@@ -102,7 +102,7 @@ public extension CloudKitDiffable {
 
 public extension CKRecord {
     
-    public convenience init(object: CloudKitSyncable) {
+    convenience init(object: CloudKitSyncable) {
         let recordId = object.cloudKitRecordID
         self.init(recordType: type(of: object).recordType, recordID: recordId)
         for (key, value) in object.cloudKitRecordProperties {
@@ -111,7 +111,7 @@ public extension CKRecord {
         parent = object.parentReference
     }
     
-    public var encodedSystemFieldsData: Data {
+    var encodedSystemFieldsData: Data {
         let encodedSystemFields = NSMutableData()
         let coder = NSKeyedArchiver.init(forWritingWith: encodedSystemFields)
         coder.requiresSecureCoding = true
