@@ -11,9 +11,9 @@ import CloudKit
 
 public struct FetchCurrentUserID<U: State>: Command {
     
-    public var onComplete: ((CKRecordID?) -> Void)?
+    public var onComplete: ((CKRecord.ID?) -> Void)?
     
-    public init(onComplete: ((CKRecordID?) -> Void)? = nil) {
+    public init(onComplete: ((CKRecord.ID?) -> Void)? = nil) {
         self.onComplete = onComplete
     }
     

@@ -11,10 +11,10 @@ import CloudKit
 
 public struct FetchRecordZone<U: State>: Command {
     
-    public var zoneID: CKRecordZoneID
+    public var zoneID: CKRecordZone.ID
     public var completion: ((Bool) -> Void)?
     
-    public init(with zoneID: CKRecordZoneID, completion: ((Bool) -> Void)? = nil) {
+    public init(with zoneID: CKRecordZone.ID, completion: ((Bool) -> Void)? = nil) {
         self.zoneID = zoneID
         self.completion = completion
     }

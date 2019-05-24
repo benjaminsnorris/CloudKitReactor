@@ -11,10 +11,10 @@ import CloudKit
 
 public struct AcceptShares<U: State>: Command {
     
-    public var metadatas: [CKShareMetadata]
+    public var metadatas: [CKShare.Metadata]
     public var completion: ((Error?) -> Void)?
     
-    public init(with metadatas: [CKShareMetadata], completion: ((Error?) -> Void)? = nil) {
+    public init(with metadatas: [CKShare.Metadata], completion: ((Error?) -> Void)? = nil) {
         self.metadatas = metadatas
         self.completion = completion
     }

@@ -12,18 +12,18 @@ import CloudKit
 public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var objects: [T]
-    public var savePolicy: CKRecordSavePolicy
-    public var databaseScope: CKDatabaseScope
+    public var savePolicy: CKModifyRecordsOperation.RecordSavePolicy
+    public var databaseScope: CKDatabase.Scope
     public var completion: (() -> Void)?
 
-    public init(_ objects: [T], savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(_ objects: [T], savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .changedKeys, databaseScope: CKDatabase.Scope = .private, completion: (() -> Void)? = nil) {
         self.objects = objects
         self.savePolicy = savePolicy
         self.databaseScope = databaseScope
         self.completion = completion
     }
     
-    public init(_ object: T, savePolicy: CKRecordSavePolicy = .changedKeys, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(_ object: T, savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .changedKeys, databaseScope: CKDatabase.Scope = .private, completion: (() -> Void)? = nil) {
         self.init([object], savePolicy: savePolicy, databaseScope: databaseScope, completion: completion)
     }
     

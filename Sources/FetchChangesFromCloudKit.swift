@@ -13,11 +13,11 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
     
     public let objectTypes: [CloudKitSyncable.Type]
     public var databaseChangeToken: CKServerChangeToken?
-    public var zoneChangeTokens: [CKRecordZoneID: CKServerChangeToken]
-    public var databaseScope: CKDatabaseScope
+    public var zoneChangeTokens: [CKRecordZone.ID: CKServerChangeToken]
+    public var databaseScope: CKDatabase.Scope
     public var completion: ((_ changes: Bool) -> Void)?
     
-    public init(with objectTypes: [CloudKitSyncable.Type], databaseChangeToken: CKServerChangeToken? = nil, zoneChangeTokens: [CKRecordZoneID: CKServerChangeToken] = [:], databaseScope: CKDatabaseScope = .private, completion: ((_ changes: Bool) -> Void)? = nil) {
+    public init(with objectTypes: [CloudKitSyncable.Type], databaseChangeToken: CKServerChangeToken? = nil, zoneChangeTokens: [CKRecordZone.ID: CKServerChangeToken] = [:], databaseScope: CKDatabase.Scope = .private, completion: ((_ changes: Bool) -> Void)? = nil) {
         self.objectTypes = objectTypes
         self.databaseChangeToken = databaseChangeToken
         self.zoneChangeTokens = zoneChangeTokens
@@ -26,7 +26,7 @@ public struct FetchChangesFromCloudKit<U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
-        var changedZoneIDs = [CKRecordZoneID]()
+        var changedZoneIDs = [CKRecordZone.ID]()
         let operation = CKFetchDatabaseChangesOperation(previousServerChangeToken: databaseChangeToken)
         operation.recordZoneWithIDChangedBlock = { zoneID in
             changedZoneIDs.append(zoneID)

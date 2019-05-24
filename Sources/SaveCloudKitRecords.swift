@@ -13,11 +13,11 @@ public struct SaveCloudKitRecords<U: State>: Command {
     
     public var records: [CKRecord]
     public var objects: [CloudKitSyncable]
-    public var savePolicy: CKRecordSavePolicy
-    public var databaseScope: CKDatabaseScope
+    public var savePolicy: CKModifyRecordsOperation.RecordSavePolicy
+    public var databaseScope: CKDatabase.Scope
     public var completion: ((Error?) -> Void)?
     
-    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKRecordSavePolicy = .ifServerRecordUnchanged, databaseScope: CKDatabaseScope = .private, completion: ((Error?) -> Void)? = nil) {
+    public init(_ records: [CKRecord] = [], objects: [CloudKitSyncable] = [], savePolicy: CKModifyRecordsOperation.RecordSavePolicy = .ifServerRecordUnchanged, databaseScope: CKDatabase.Scope = .private, completion: ((Error?) -> Void)? = nil) {
         self.records = records
         self.objects = objects
         self.savePolicy = savePolicy

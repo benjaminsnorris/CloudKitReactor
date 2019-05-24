@@ -11,15 +11,15 @@ import Reactor
 
 public struct UnsubscribeFromCloudKit<U: State>: Command {
     
-    let databaseScope: CKDatabaseScope
+    let databaseScope: CKDatabase.Scope
     let identifiers: [String]
     
-    public init(with identifiers: [String], databaseScope: CKDatabaseScope = .private) {
+    public init(with identifiers: [String], databaseScope: CKDatabase.Scope = .private) {
         self.databaseScope = databaseScope
         self.identifiers = identifiers
     }
     
-    public init(with identifier: String, databaseScope: CKDatabaseScope = .private) {
+    public init(with identifier: String, databaseScope: CKDatabase.Scope = .private) {
         self.databaseScope = databaseScope
         identifiers = [identifier]
     }

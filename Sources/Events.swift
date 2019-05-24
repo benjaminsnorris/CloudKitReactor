@@ -23,7 +23,7 @@ public struct CloudKitUpdated<T>: CloudKitDataEvent {
 }
 
 public struct CloudKitDeleted: CloudKitDataEvent {
-    public var recordID: CKRecordID
+    public var recordID: CKRecord.ID
 }
 
 public struct CloudKitRecordError: CloudKitErrorEvent {
@@ -76,7 +76,7 @@ public struct CloudKitStatusRetrieved: CloudKitDataEvent {
 }
 
 public struct CloudKitDefaultCustomZoneCreated: CloudKitDataEvent {
-    public var zoneID: CKRecordZoneID
+    public var zoneID: CKRecordZone.ID
 }
 
 public struct CloudKitDefaultCustomZoneFound: CloudKitDataEvent {
@@ -84,12 +84,12 @@ public struct CloudKitDefaultCustomZoneFound: CloudKitDataEvent {
 }
 
 public struct CloudKitUserDiscoverabilityRetrieved: CloudKitDataEvent {
-    public var status: CKApplicationPermissionStatus
+    public var status: CKContainer.Application.PermissionStatus
     public var error: Error?
 }
 
 public struct CloudKitCurrentUserIDRetrieved: CloudKitDataEvent {
-    public var recordID: CKRecordID
+    public var recordID: CKRecord.ID
 }
 
 public struct CloudKitCurrentUserIdentityRetrieved: CloudKitDataEvent {
@@ -128,19 +128,19 @@ public struct CloudKitBadgeUpdated: CloudKitDataEvent {
 }
 
 public struct CloudKitServerChangeTokenUpdated: CloudKitDataEvent {
-    public var zoneID: CKRecordZoneID
+    public var zoneID: CKRecordZone.ID
     public var token: CKServerChangeToken?
 }
 
 public struct CloudKitDatabaseServerChangeTokenUpdated: CloudKitDataEvent {
-    public var databaseScope: CKDatabaseScope
+    public var databaseScope: CKDatabase.Scope
     public var token: CKServerChangeToken?
 }
 
 public struct CloudKitShareError: CloudKitErrorEvent {
     public var error: Error
-    public var metadata: CKShareMetadata
-    public init(_ error: Error, for metadata: CKShareMetadata) {
+    public var metadata: CKShare.Metadata
+    public init(_ error: Error, for metadata: CKShare.Metadata) {
         self.error = error
         self.metadata = metadata
     }

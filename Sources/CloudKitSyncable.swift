@@ -15,10 +15,10 @@ public protocol CloudKitSyncable {
     var cloudKitRecordProperties: [String: CKRecordValue?] { get }
     var cloudKitRecordChanges: [String: Any?] { get set }
     
-    var cloudKitRecordID: CKRecordID { get }
+    var cloudKitRecordID: CKRecord.ID { get }
     static var recordType: String { get }
-    var cloudKitReference: CKReference { get }
-    var parentReference: CKReference? { get }
+    var cloudKitReference: CKRecord.Reference { get }
+    var parentReference: CKRecord.Reference? { get }
     
     var needsSavingToCloudKit: Bool { get }
     var isSavedInCloudKit: Bool { get }
@@ -43,11 +43,11 @@ public extension CloudKitSyncable {
         return !cloudKitRecordChanges.isEmpty
     }
     
-    var cloudKitReference: CKReference {
-        return CKReference(recordID: cloudKitRecordID, action: .none)
+    var cloudKitReference: CKRecord.Reference {
+        return CKRecord.Reference(recordID: cloudKitRecordID, action: .none)
     }
     
-    var parentReference: CKReference? {
+    var parentReference: CKRecord.Reference? {
         return nil
     }
     
@@ -75,8 +75,8 @@ public protocol CloudKitIdentifiable {
 
 public extension CloudKitSyncable where Self: CloudKitIdentifiable {
     
-    var cloudKitRecordID: CKRecordID {
-        return CKRecordID(recordName: identifier, zoneID: CloudKitReactorConstants.zoneID)
+    var cloudKitRecordID: CKRecord.ID {
+        return CKRecord.ID(recordName: identifier, zoneID: CloudKitReactorConstants.zoneID)
     }
     
 }

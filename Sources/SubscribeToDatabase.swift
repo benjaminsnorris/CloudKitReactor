@@ -11,11 +11,11 @@ import Reactor
 
 public struct SubscribeToDatabase<U: State>: Command {
     
-    public var databaseScope: CKDatabaseScope
+    public var databaseScope: CKDatabase.Scope
     public var subscriptionID: String
-    public var notificationInfo: CKNotificationInfo
+    public var notificationInfo: CKSubscription.NotificationInfo
     
-    public init(databaseScope: CKDatabaseScope = .private, subscriptionID: String? = nil, notificationInfo: CKNotificationInfo? = nil) {
+    public init(databaseScope: CKDatabase.Scope = .private, subscriptionID: String? = nil, notificationInfo: CKSubscription.NotificationInfo? = nil) {
         self.databaseScope = databaseScope
         if let subscriptionID = subscriptionID {
             self.subscriptionID = subscriptionID
@@ -25,7 +25,7 @@ public struct SubscribeToDatabase<U: State>: Command {
         if let notificationInfo = notificationInfo {
             self.notificationInfo = notificationInfo
         } else {
-            let notificationInfo = CKNotificationInfo()
+            let notificationInfo = CKSubscription.NotificationInfo()
             notificationInfo.shouldSendContentAvailable = true
             self.notificationInfo = notificationInfo
         }

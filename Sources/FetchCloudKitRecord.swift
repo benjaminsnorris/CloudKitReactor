@@ -13,9 +13,9 @@ public struct FetchCloudKitRecord<T: CloudKitSyncable, U: State>: Command {
     
     public var record: T
     public var completion: (() -> Void)?
-    public var databaseScope: CKDatabaseScope
+    public var databaseScope: CKDatabase.Scope
     
-    public init(for record: T, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(for record: T, databaseScope: CKDatabase.Scope = .private, completion: (() -> Void)? = nil) {
         self.record = record
         self.databaseScope = databaseScope
         self.completion = completion

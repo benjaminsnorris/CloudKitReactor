@@ -21,9 +21,9 @@ public struct CreateCustomZone<U: State>: Command {
     }
     
     public func execute(state: U, core: Core<U>) {
-        let zoneID: CKRecordZoneID
+        let zoneID: CKRecordZone.ID
         if let zoneName = zoneName {
-            zoneID = CKRecordZoneID(zoneName: zoneName, ownerName: CKCurrentUserDefaultName)
+            zoneID = CKRecordZone.ID(zoneName: zoneName, ownerName: CKCurrentUserDefaultName)
         } else {
             zoneID = CloudKitReactorConstants.zoneID
         }

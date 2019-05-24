@@ -12,19 +12,19 @@ import Reactor
 public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var predicate: NSPredicate
-    public var options: CKQuerySubscriptionOptions
-    public var notificationInfo: CKNotificationInfo
+    public var options: CKQuerySubscription.Options
+    public var notificationInfo: CKSubscription.NotificationInfo
     public var subscriptionID: String?
-    public var databaseScope: CKDatabaseScope
-    public var zoneID: CKRecordZoneID
+    public var databaseScope: CKDatabase.Scope
+    public var zoneID: CKRecordZone.ID
 
-    public init(predicate: NSPredicate = NSPredicate(value: true), options: CKQuerySubscriptionOptions = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion], notificationInfo: CKNotificationInfo? = nil, subscriptionID: String? = nil, databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), options: CKQuerySubscription.Options = [.firesOnRecordCreation, .firesOnRecordUpdate, .firesOnRecordDeletion], notificationInfo: CKSubscription.NotificationInfo? = nil, subscriptionID: String? = nil, databaseScope: CKDatabase.Scope = .private, zoneID: CKRecordZone.ID = CloudKitReactorConstants.zoneID) {
         self.predicate = predicate
         self.options = options
         if let notificationInfo = notificationInfo {
             self.notificationInfo = notificationInfo
         } else {
-            self.notificationInfo = CKNotificationInfo()
+            self.notificationInfo = CKSubscription.NotificationInfo()
             notificationInfo?.shouldSendContentAvailable = true
         }
         self.subscriptionID = subscriptionID

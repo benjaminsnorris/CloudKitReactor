@@ -13,17 +13,17 @@ public struct DeleteFromCloudKit<U: State>: Command {
     
     public var objects: [CloudKitSyncable]
     public var records: [CKRecord]
-    public var databaseScope: CKDatabaseScope
+    public var databaseScope: CKDatabase.Scope
     let completion: (() -> Void)?
     
-    public init(_ objects: [CloudKitSyncable] = [], records: [CKRecord] = [], databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(_ objects: [CloudKitSyncable] = [], records: [CKRecord] = [], databaseScope: CKDatabase.Scope = .private, completion: (() -> Void)? = nil) {
         self.objects = objects
         self.records = records
         self.databaseScope = databaseScope
         self.completion = completion
     }
     
-    public init(_ object: CloudKitSyncable? = nil, record: CKRecord? = nil, databaseScope: CKDatabaseScope = .private, completion: (() -> Void)? = nil) {
+    public init(_ object: CloudKitSyncable? = nil, record: CKRecord? = nil, databaseScope: CKDatabase.Scope = .private, completion: (() -> Void)? = nil) {
         if let object = object {
             self.init([object], databaseScope: databaseScope, completion: completion)
         } else if let record = record {

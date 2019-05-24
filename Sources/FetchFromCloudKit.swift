@@ -12,12 +12,12 @@ import CloudKit
 public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
     
     public var predicate: NSPredicate
-    public var databaseScope: CKDatabaseScope
-    public var zoneID: CKRecordZoneID
+    public var databaseScope: CKDatabase.Scope
+    public var zoneID: CKRecordZone.ID
     public var completion: ((Int?) -> Void)?
     let returnObjects: Bool
     
-    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabaseScope = .private, zoneID: CKRecordZoneID = CloudKitReactorConstants.zoneID, returnObjects: Bool = true, completion: ((Int?) -> Void)? = nil) {
+    public init(predicate: NSPredicate = NSPredicate(value: true), databaseScope: CKDatabase.Scope = .private, zoneID: CKRecordZone.ID = CloudKitReactorConstants.zoneID, returnObjects: Bool = true, completion: ((Int?) -> Void)? = nil) {
         self.predicate = predicate
         self.databaseScope = databaseScope
         self.zoneID = zoneID
@@ -47,7 +47,7 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
         }
         operation.recordFetchedBlock = perRecordBlock
         
-        var queryCompletionBlock: (CKQueryCursor?, Error?) -> Void = { (_, _) in }
+        var queryCompletionBlock: (CKQueryOperation.Cursor?, Error?) -> Void = { (_, _) in }
 
         queryCompletionBlock = { queryCursor, error in
             if let queryCursor = queryCursor {
