@@ -68,6 +68,8 @@ public struct SubscribeToCloudKit<T: CloudKitSyncable, U: State>: Command {
                     core.fire(event: CloudKitSubscriptionSuccessful(type: .publicQuery, subscriptionID: self.subscriptionID))
                 }
             }
+        @unknown default:
+            fatalError()
         }
     }
     

@@ -63,6 +63,8 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
                     container.sharedCloudDatabase.add(continuedQueryOperation)
                 case .public:
                     container.publicCloudDatabase.add(continuedQueryOperation)
+                @unknown default:
+                    fatalError()
                 }
                 
             } else if let error = error {
@@ -90,6 +92,8 @@ public struct FetchFromCloudKit<T: CloudKitSyncable, U: State>: Command {
             container.sharedCloudDatabase.add(operation)
         case .public:
             container.publicCloudDatabase.add(operation)
+        @unknown default:
+            fatalError()
         }
 
     }

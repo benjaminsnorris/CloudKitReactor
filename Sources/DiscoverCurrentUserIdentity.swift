@@ -20,7 +20,7 @@ public struct DiscoverCurrentUserIdentity<U: State>: Command {
                 guard error == nil else { return }
                 
                 guard let recordID = recordID else { return }
-                let lookupInfo = CKUserIdentityLookupInfo(userRecordID: recordID)
+                let lookupInfo = CKUserIdentity.LookupInfo(userRecordID: recordID)
                 let operation = CKDiscoverUserIdentitiesOperation(userIdentityLookupInfos: [lookupInfo])
                 operation.userIdentityDiscoveredBlock = { identity, lookupInfo in
                     core.fire(event: CloudKitCurrentUserIdentityRetrieved(identity: identity))

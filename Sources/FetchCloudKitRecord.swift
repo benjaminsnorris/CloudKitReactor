@@ -36,6 +36,8 @@ public struct FetchCloudKitRecord<T: CloudKitSyncable, U: State>: Command {
             container.publicCloudDatabase.fetch(withRecordID: record.cloudKitRecordID) { record, error in
                 self.process(record, error: error, state: state, core: core)
             }
+        @unknown default:
+            fatalError()
         }
     }
     

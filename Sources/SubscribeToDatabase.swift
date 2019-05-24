@@ -48,6 +48,8 @@ public struct SubscribeToDatabase<U: State>: Command {
                     type = .sharedDatabase
                 case .public:
                     type = .publicDatabase
+                @unknown default:
+                    fatalError()
                 }
                 core.fire(event: CloudKitSubscriptionSuccessful(type: type, subscriptionID: self.subscriptionID))
             }
@@ -61,6 +63,8 @@ public struct SubscribeToDatabase<U: State>: Command {
             container.sharedCloudDatabase.add(operation)
         case .public:
             container.publicCloudDatabase.add(operation)
+        @unknown default:
+            fatalError()
         }
     }
     

@@ -57,6 +57,8 @@ public struct DeleteFromCloudKit<U: State>: Command {
             container.sharedCloudDatabase.add(operation)
         case .public:
             container.publicCloudDatabase.add(operation)
+        @unknown default:
+            fatalError()
         }
 
     }

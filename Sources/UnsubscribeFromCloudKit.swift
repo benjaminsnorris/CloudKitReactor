@@ -40,6 +40,8 @@ public struct UnsubscribeFromCloudKit<U: State>: Command {
                         type = .sharedDatabase
                     case .public:
                         type = .publicDatabase
+                    @unknown default:
+                        fatalError()
                     }
                     core.fire(event: CloudKitSubscriptionRemoved(type: type, subscriptionId: deletedId))
                 }
@@ -54,6 +56,8 @@ public struct UnsubscribeFromCloudKit<U: State>: Command {
             container.sharedCloudDatabase.add(operation)
         case .public:
             container.publicCloudDatabase.add(operation)
+        @unknown default:
+            fatalError()
         }
     }
     
