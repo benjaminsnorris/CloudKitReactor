@@ -9,6 +9,7 @@ import Foundation
 import Reactor
 import CloudKit
 
+@available(iOS, introduced: 8.0, deprecated: 11.0, message: "No longer supported, will cease working at some point in the future")
 public struct UpdateCloudKitBadge<U: State>: Command {
     
     let badgeCount: Int
