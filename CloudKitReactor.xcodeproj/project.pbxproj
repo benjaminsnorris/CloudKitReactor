@@ -195,9 +195,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7072FFB41E2FC44300472CA5 /* Build configuration list for PBXNativeTarget "CloudKitReactor" */;
 			buildPhases = (
+				7072FF9D1E2FC44200472CA5 /* Headers */,
 				7072FF9B1E2FC44200472CA5 /* Sources */,
 				7072FF9C1E2FC44200472CA5 /* Frameworks */,
-				7072FF9D1E2FC44200472CA5 /* Headers */,
 				7072FF9E1E2FC44200472CA5 /* Resources */,
 			);
 			buildRules = (
