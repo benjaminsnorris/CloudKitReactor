@@ -13,7 +13,7 @@ public struct FetchRecordZoneChanges<U: State>: Command {
     
     public let objectTypes: [CloudKitSyncable.Type]
     public var recordZoneIDs: [CKRecordZone.ID]
-    public var recordZoneChangesOptions: [CKFetchRecordZoneChangesOperation.ZoneOptions]
+    public var recordZoneChangesOptions: [CKFetchRecordZoneChangesOperation.ZoneConfiguration]
     public var zoneChangeTokens: [CKRecordZone.ID: CKServerChangeToken]
     public var databaseScope: CKDatabase.Scope
     public var completion: ((_ changes: Bool) -> Void)?
@@ -22,7 +22,7 @@ public struct FetchRecordZoneChanges<U: State>: Command {
         return recordZoneIDs == [CloudKitReactorConstants.zoneID] && recordZoneChangesOptions.isEmpty
     }
     
-    public init(with objectTypes: [CloudKitSyncable.Type], recordZoneIDs: [CKRecordZone.ID] = [CloudKitReactorConstants.zoneID], recordZoneChangesOptions: [CKFetchRecordZoneChangesOperation.ZoneOptions] = [], zoneChangeTokens: [CKRecordZone.ID: CKServerChangeToken] = [:], databaseScope: CKDatabase.Scope = .private, completion: ((_ changes: Bool) -> Void)? = nil) {
+    public init(with objectTypes: [CloudKitSyncable.Type], recordZoneIDs: [CKRecordZone.ID] = [CloudKitReactorConstants.zoneID], recordZoneChangesOptions: [CKFetchRecordZoneChangesOperation.ZoneConfiguration] = [], zoneChangeTokens: [CKRecordZone.ID: CKServerChangeToken] = [:], databaseScope: CKDatabase.Scope = .private, completion: ((_ changes: Bool) -> Void)? = nil) {
         self.objectTypes = objectTypes
         self.recordZoneIDs = recordZoneIDs
         self.recordZoneChangesOptions = recordZoneChangesOptions
@@ -39,22 +39,22 @@ public struct FetchRecordZoneChanges<U: State>: Command {
         let operation = CKFetchRecordZoneChangesOperation()
         operation.recordZoneIDs = recordZoneIDs
         if defaultZoneOnly {
-            let options = CKFetchRecordZoneChangesOperation.ZoneOptions()
-            options.previousServerChangeToken = zoneChangeTokens[CloudKitReactorConstants.zoneID]
-            operation.optionsByRecordZoneID = [CloudKitReactorConstants.zoneID: options]
+            let configuration = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
+            configuration.previousServerChangeToken = zoneChangeTokens[CloudKitReactorConstants.zoneID]
+            operation.configurationsByRecordZoneID = [CloudKitReactorConstants.zoneID: configuration]
         } else {
-            var allOptions = [CKRecordZone.ID: CKFetchRecordZoneChangesOperation.ZoneOptions]()
+            var allConfigurations = [CKRecordZone.ID: CKFetchRecordZoneChangesOperation.ZoneConfiguration]()
             for (index, zoneID) in recordZoneIDs.enumerated() {
-                let options: CKFetchRecordZoneChangesOperation.ZoneOptions
+                let configuration: CKFetchRecordZoneChangesOperation.ZoneConfiguration
                 if index < recordZoneChangesOptions.count {
-                    options = recordZoneChangesOptions[index]
+                    configuration = recordZoneChangesOptions[index]
                 } else {
-                    options = CKFetchRecordZoneChangesOperation.ZoneOptions()
+                    configuration = CKFetchRecordZoneChangesOperation.ZoneConfiguration()
                 }
-                options.previousServerChangeToken = zoneChangeTokens[zoneID]
-                allOptions[zoneID] = options
+                configuration.previousServerChangeToken = zoneChangeTokens[zoneID]
+                allConfigurations[zoneID] = configuration
             }
-            operation.optionsByRecordZoneID = allOptions
+            operation.configurationsByRecordZoneID = allConfigurations
         }
         
         operation.recordZoneChangeTokensUpdatedBlock = { zoneID, serverToken, clientTokenData in

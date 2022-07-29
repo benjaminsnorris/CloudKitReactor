@@ -34,7 +34,9 @@ public struct SaveToCloudKit<T: CloudKitSyncable, U: State>: Command {
         operation.savePolicy = savePolicy
         operation.queuePriority = .high
         operation.qualityOfService = .userInteractive
-        operation.isLongLived = true
+        let configuration = CKOperation.Configuration()
+        configuration.isLongLived = true
+        operation.configuration = configuration
         operation.perRecordCompletionBlock = { record, error in
             if let error = error {
                 core.fire(event: CloudKitRecordError(error, for: record))

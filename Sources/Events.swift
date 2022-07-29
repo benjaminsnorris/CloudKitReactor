@@ -84,7 +84,7 @@ public struct CloudKitDefaultCustomZoneFound: CloudKitDataEvent {
 }
 
 public struct CloudKitUserDiscoverabilityRetrieved: CloudKitDataEvent {
-    public var status: CKContainer.Application.PermissionStatus
+    public var status: CKContainer.ApplicationPermissionStatus
     public var error: Error?
 }
 

@@ -57,7 +57,7 @@ public extension CloudKitSyncable {
     
     var recordWithChanges: CKRecord? {
         guard hasUnsavedChanges, let encodedSystemFields = encodedSystemFields else { return nil }
-        let coder = NSKeyedUnarchiver(forReadingWith: encodedSystemFields)
+        guard let coder = try? NSKeyedUnarchiver(forReadingFrom: encodedSystemFields) else { return nil }
         coder.requiresSecureCoding = true
         let record = CKRecord(coder: coder)
         coder.finishDecoding()
@@ -112,12 +112,10 @@ public extension CKRecord {
     }
     
     var encodedSystemFieldsData: Data {
-        let encodedSystemFields = NSMutableData()
-        let coder = NSKeyedArchiver.init(forWritingWith: encodedSystemFields)
-        coder.requiresSecureCoding = true
+        let coder = NSKeyedArchiver(requiringSecureCoding: true)
         encodeSystemFields(with: coder)
         coder.finishEncoding()
-        return encodedSystemFields as Data
+        return coder.encodedData
     }
     
 }
